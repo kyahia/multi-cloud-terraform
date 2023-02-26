@@ -1,4 +1,7 @@
 resource "aws_elb" "web_app_lb" {
+  depends_on = [
+    aws_route_table_association.route_to_nat
+  ]
   name     = "web-app-load-balancer"
   internal = false
   subnets  = [aws_subnet.public_subnet.id]
