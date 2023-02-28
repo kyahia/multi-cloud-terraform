@@ -7,7 +7,7 @@ resource "aws_cloudwatch_metric_alarm" "terr_http_request_alarm" {
   alarm_name          = "terra-http-request-alarm"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
-  threshold           = "10"
+  threshold           = "50"
   metric_name         = "RequestCount"
   namespace           = "AWS/ELB"
   period              = "60"

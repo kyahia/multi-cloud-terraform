@@ -10,7 +10,7 @@ resource "google_monitoring_alert_policy" "http_request_alert" {
       filter = "resource.type = \"https_lb_rule\" AND resource.labels.forwarding_rule_name = \"${var.lb_name}\" AND metric.type = \"loadbalancing.googleapis.com/https/backend_request_count\""
       duration        = "60s"
       comparison      = "COMPARISON_GT"
-      threshold_value = 100
+      threshold_value = 10
       aggregations {
         alignment_period   = "60s"
         per_series_aligner = "ALIGN_SUM"
