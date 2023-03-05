@@ -43,13 +43,3 @@ variable "aws_access_key" {
 variable "aws_secret_key" {
   type = string
 }
-
-# variable "provider" {
-#   type = object({
-
-#   })
-#   default = {
-#     version = "~>3.0"
-
-#   }
-# }

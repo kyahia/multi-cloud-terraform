@@ -1,3 +1,3 @@
-output "http_lb_ip" {
-  value = module.network.http_lb_ip
+output "vpc_id" {
+  value = module.network.vpc_id
 }

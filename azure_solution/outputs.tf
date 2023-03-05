@@ -1,3 +1,3 @@
-output "dns_ip" {
-  value = module.balancing.pip.ip_address
+output "vpc_ip" {
+  value = module.network.vpc_id
 }
