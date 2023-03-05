@@ -19,3 +19,7 @@ variable "vm_password" {
   type = string
   default = "yahiaKERDACHE2023"
 }
+
+variable "servers_count" {
+  type = number
+}

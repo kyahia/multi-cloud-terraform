@@ -8,3 +8,7 @@ variable "resource_group_name" {
   description = "Value of the resource group"
   type        = string
 }
+
+variable "servers_count" {
+  type = number
+}

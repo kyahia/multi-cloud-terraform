@@ -23,10 +23,7 @@ resource "aws_elb" "web_app_lb" {
     target              = "HTTP:80/"
   }
 
-  instances = [
-    var.vm1_id,
-    var.vm2_id
-  ]
+  instances = var.vm_ids
 
   tags = {
     Name = "web-app-load-balancers"
