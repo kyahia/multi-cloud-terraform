@@ -1,19 +1,7 @@
-locals {
-  nic_names = {
-    nic1 = {
-      name = "nic1"
-    },
-    nic2 = {
-      name = "nic2"
-    }
-  }
-}
-
-
 # CREATE NETWORK INTERFACES
 resource "azurerm_network_interface" "nic" {
-  for_each = local.nic_names
-  name                 = each.value.name
+  count                = var.servers_count
+  name                 = "nic-${count.index + 1}"
   resource_group_name  = var.resource_group_name
   location             = var.location
   enable_ip_forwarding = true
@@ -25,18 +13,36 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
-# resource "azurerm_network_interface" "nic2" {
-#   name                 = "nic2"
-#   resource_group_name  = var.resource_group_name
-#   location             = var.location
-#   enable_ip_forwarding = true
+# CREATE VMs
+resource "azurerm_linux_virtual_machine" "vms" {
+  count               = var.servers_count
+  name                = "vm-${count.index + 1}"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  size                = "Standard_D2s_v3"
+  network_interface_ids = [
+    azurerm_network_interface.nic[count.index].id
+  ]
 
-#   ip_configuration {
-#     name                          = "ipconfig"
-#     subnet_id                     = var.private_subnet_id
-#     private_ip_address_allocation = "Dynamic"
-#   }
-# }
+  admin_username                  = var.vm_username
+  admin_password                  = var.vm_password
+  disable_password_authentication = false
+
+  custom_data = filebase64("./script.sh")
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "16.04-LTS"
+    version   = "latest"
+  }
+
+}
 
 # CREATE A SECURITY GROUP
 resource "azurerm_network_security_group" "nsg" {
@@ -58,70 +64,7 @@ resource "azurerm_network_security_group" "nsg" {
 }
 
 resource "azurerm_network_interface_security_group_association" "nic1_nsg_association" {
-  network_interface_id      = azurerm_network_interface.nic["nic1"].id
+  count                     = var.servers_count
+  network_interface_id      = azurerm_network_interface.nic[count.index].id
   network_security_group_id = azurerm_network_security_group.nsg.id
 }
-resource "azurerm_network_interface_security_group_association" "nic2_nsg_association" {
-  network_interface_id      = azurerm_network_interface.nic["nic2"].id
-  network_security_group_id = azurerm_network_security_group.nsg.id
-}
-
-# CREATE VMs
-resource "azurerm_linux_virtual_machine" "vm1" {
-  name                = "vm-1"
-  resource_group_name = var.resource_group_name
-  location            = var.location
-  size                = "Standard_D2s_v3"
-  network_interface_ids = [
-    azurerm_network_interface.nic["nic1"].id
-  ]
-
-  admin_username                  = var.vm_username
-  admin_password                  = var.vm_password
-  disable_password_authentication = false
-
-  custom_data = filebase64("./script.sh")
-
-  os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
-
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
-    version   = "latest"
-  }
-
-}
-
-
-resource "azurerm_linux_virtual_machine" "vm2" {
-  name                = "vm-2"
-  resource_group_name = var.resource_group_name
-  location            = var.location
-  size                = "Standard_D2s_v3"
-  network_interface_ids = [
-    azurerm_network_interface.nic["nic2"].id,
-  ]
-
-  admin_username                  = var.vm_username
-  admin_password                  = var.vm_password
-  disable_password_authentication = false
-
-  custom_data = filebase64("./script.sh")
-
-  os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
-
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
-    version   = "latest"
-  }
-}
-

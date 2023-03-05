@@ -3,13 +3,9 @@ output "vpc_id" {
 }
 
 output "pub_subnet_id" {
-  value = azurerm_subnet.public_subnet.id
+  value = azurerm_subnet.subnets["public_subnet"].id
 }
 
 output "prv_subnet_id" {
-  value = azurerm_subnet.private_subnet.id
+  value = azurerm_subnet.subnets["private_subnet"].id
 }
-
-# output "nat_id" {
-#   value = azurerm_nat_gateway.nat.id
-# }

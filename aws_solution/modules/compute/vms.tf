@@ -1,9 +1,3 @@
-locals {
-  vm_names = {
-    vm1 = { name = "ubuntu-vm1" },
-    vm2 = { name = "ubuntu-vm2" }
-  }
-}
 data "aws_ami" "vimages" {
   most_recent = true
   owners      = ["099720109477"]
@@ -20,15 +14,16 @@ data "aws_ami" "vimages" {
     values = ["hvm"]
   }
 }
+
 resource "aws_instance" "web_app_vms" {
-  ami             = data.aws_ami.vimages.id
-  # ami = "ami-00874d747dde814fa"
-  subnet_id       = var.private_subnet_id
+  ami                    = data.aws_ami.vimages.id
+  subnet_id              = var.private_subnet_id
   vpc_security_group_ids = [var.allow_http_sg_id]
-  instance_type   = "t2.micro"
-  user_data       = file("script.sh")
-  for_each        = local.vm_names
+  instance_type          = "t2.micro"
+  user_data              = file("script.sh")
+
+  count = var.servers_count
   tags = {
-    Name = each.value.name
+    Name = "ubuntu-vm${count.index + 1}"
   }
 }
