@@ -16,23 +16,23 @@ variable "azure_location" {
 }
 
 # GCP
-variable "enable_gcp" {
-  type    = bool
-  default = true
-}
-variable "gcp_credentials_path" {
-  type = string
-}
-variable "gcp_region" {
-  type    = string
-  default = "us-central1"
-}
+# variable "enable_gcp" {
+#   type    = bool
+#   default = true
+# }
+# variable "gcp_credentials_path" {
+#   type = string
+# }
+# variable "gcp_region" {
+#   type    = string
+#   default = "us-central1"
+# }
 
 # AWS
-variable "enable_aws" {
-  type    = bool
-  default = true
-}
+# variable "enable_aws" {
+#   type    = bool
+#   default = true
+# }
 variable "aws_region" {
   type    = string
   default = "us-east-1"
@@ -44,7 +44,7 @@ variable "aws_secret_key" {
   type = string
 }
 
-variable "servers_count" {
-  type    = number
-  default = 2
-}
+# variable "servers_count" {
+#   type    = number
+#   default = 2
+# }
