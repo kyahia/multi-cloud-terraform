@@ -1,7 +1,7 @@
 
 # AZURE
 variable "enable_azure" {
-  type = bool
+  type    = bool
   default = true
 }
 variable "azure_subscription_id" {
@@ -11,30 +11,30 @@ variable "azure_resource_group" {
   type = string
 }
 variable "azure_location" {
-  type = string
+  type    = string
   default = "Central US"
 }
 
 # GCP
-variable "enable_gcp" {
-  type = bool
-  default = true
-}
-variable "gcp_credentials_path" {
-  type = string
-}
-variable "gcp_region" {
-  type = string
-  default = "us-central1"
-}
+# variable "enable_gcp" {
+#   type    = bool
+#   default = true
+# }
+# variable "gcp_credentials_path" {
+#   type = string
+# }
+# variable "gcp_region" {
+#   type    = string
+#   default = "us-central1"
+# }
 
 # AWS
-variable "enable_aws" {
-  type = bool
-  default = true
-}
+# variable "enable_aws" {
+#   type    = bool
+#   default = true
+# }
 variable "aws_region" {
-  type = string
+  type    = string
   default = "us-east-1"
 }
 variable "aws_access_key" {
@@ -43,3 +43,13 @@ variable "aws_access_key" {
 variable "aws_secret_key" {
   type = string
 }
+
+# variable "provider" {
+#   type = object({
+
+#   })
+#   default = {
+#     version = "~>3.0"
+
+#   }
+# }

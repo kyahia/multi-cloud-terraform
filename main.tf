@@ -1,17 +1,38 @@
-module "gcp_solution" {
-  source = "./gcp_solution"
-  project_id = local.gcp_project_id
-  count = var.enable_gcp ? 1 : 0
+module "vpc_aws" {
+  source         = "./modules/vpc/aws"
+  aws_region     = var.aws_region
+  aws_access_key = var.aws_access_key
+  aws_secret_key = var.aws_secret_key
+  vpc = {
+    vpc1 = {
+      cidr_block = "10.0.0.0/16"
+      name       = "web-app-vpc"
+    },
+  }
 }
 
-module "aws_solution" {
-  source = "./aws_solution"
-  count = var.enable_aws ? 1 : 0
-}
 
-module "azure_solution" {
-  source = "./azure_solution"
-  location = var.enable_azure ? var.azure_location : ""
-  resource_group_name = var.enable_azure ? var.azure_resource_group : ""
-  count = var.enable_azure ? 1 : 0
+module "subnet_aws" {
+  source = "./modules/subnet/aws"
+  aws_region     = var.aws_region
+  aws_access_key = var.aws_access_key
+  aws_secret_key = var.aws_secret_key
+  subnets = {
+    sub1 = {
+      vpc_id = module.vpc_aws.vpc_id
+      cidr_block        = "10.0.1.0/24"
+      availability_zone = "us-east-1a"
+      tags = {
+        Name = "subnet-1"
+      }
+    }
+    sub2 = {
+      vpc_id = module.vpc_aws.vpc_id
+      cidr_block        = "10.0.2.0/24"
+      availability_zone = "us-east-1a"
+      tags = {
+        Name = "subnet-2"
+      }
+    }
+  }
 }
