@@ -1,3 +1,16 @@
+# output "vpc_aws" {
+#   value = module.vpc_aws.vpc
+# }
+
+# output "vpc_azure" {
+#   value = module.vpc_azure.vpc
+# }
+
+output "vpc_gcp" {
+  value = module.vpc_gcp.vpc["vpc1"].id
+  }
+
+
 
 # output "gcp_dns" {
 #   value = var.enable_gcp ? module.gcp_solution[0].http_lb_ip : ""
