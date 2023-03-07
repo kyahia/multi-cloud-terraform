@@ -1,5 +1,5 @@
-variable "vpc" {
-  
+variable "vpcs" {
+  type = map(any)
 }
 
 variable "aws_region" {

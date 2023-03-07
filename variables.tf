@@ -1,19 +1,19 @@
 
 # AZURE
-variable "enable_azure" {
-  type    = bool
-  default = true
-}
-variable "azure_subscription_id" {
-  type = string
-}
-variable "azure_resource_group" {
-  type = string
-}
-variable "azure_location" {
-  type    = string
-  default = "Central US"
-}
+#variable "enable_azure" {
+#  type    = bool
+#  default = true
+#}
+#variable "azure_subscription_id" {
+#  type = string
+#}
+#variable "azure_resource_group" {
+#  type = string
+#}
+#variable "azure_location" {
+#  type    = string
+#  default = "Central US"
+#}
 
 # GCP
 # variable "enable_gcp" {
