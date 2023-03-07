@@ -1,3 +1,9 @@
+locals {
+  public_subnets = {for key, value in var.subnets: key=>key if value.type == "public"}
+  private_subnets = {for key, value in var.subnets: key=>key if value.type == "private"}
+  private_subnets_with_nat = {for key, value in var.subnets: key=>key if value.type == "private_with_nat"}
+  public_subnet_names = [for key, value in local.public_subnets: value]
+}
 
 provider "aws" {
   region     = var.aws_region

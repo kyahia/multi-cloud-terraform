@@ -14,9 +14,8 @@ variable "aws_access_key" {
 variable "aws_secret_key" {
   type = string
 }
-variable "ngw_name" {
+variable "internet_gateway_id" {
   type = string
+  default = ""
 }
-variable "igw_name" {
-  type = string
-}
+
