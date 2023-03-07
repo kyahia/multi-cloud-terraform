@@ -1,4 +1,4 @@
-variable "vpc" {  
+variable "vpcs" {  
 }
 
 variable "azure_subscription_id" {

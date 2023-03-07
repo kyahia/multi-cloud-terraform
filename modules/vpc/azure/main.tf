@@ -9,8 +9,8 @@ provider "azurerm" {
 resource "azurerm_virtual_network" "Vnet" {
   for_each            = var.vpc
   resource_group_name = each.value.azure_resource_group
-  name                = each.value.vnet_name
+  name                = each.value.name
   location            = each.value.location
-  address_space       = [each.value.azure-cidr_vnet]
+  address_space       = [each.value.cidr_block]
 }
 
