@@ -5,10 +5,9 @@ provider "google" {
   region      = var.gcp_region
 }
 
-resource "google_compute_network" "terr_vpc" {
-    for_each = var.vpc
+resource "google_compute_network" "vpc" {
+  for_each                = var.vpc
   name                    = each.value.name
-  auto_create_subnetworks = each.value.auto_create_subnetworks
 }
 
 
