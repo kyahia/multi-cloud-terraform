@@ -7,9 +7,7 @@ provider "google" {
 locals {
   subnet_keys     = [ for k, v in var.subnets : k ]
   starting_index = length(var.previous_subnets)
-}
 
-locals {
   subnets = var.cidr_mode == "manual" ? var.subnets : {
     for key in local.subnet_keys : key => {
       name       = var.subnets[key].name
@@ -17,13 +15,10 @@ locals {
       cidr_block = cidrsubnet("10.0.0.0/16", 8, index(local.subnet_keys, key) + local.starting_index)
     }
   }
-}
 
-locals {
   private_subnets = { for k, v in local.subnets : k => v if v.type == "private" }
   public_subnets  = { for k, v in local.subnets : k => v if v.type == "public" }
 }
-
 
 
 resource "google_compute_subnetwork" "public_subnets" {
@@ -40,4 +35,5 @@ resource "google_compute_subnetwork" "private_subnets" {
   network       = var.vpc_name
   ip_cidr_range = each.value.cidr_block
 }
+
 
