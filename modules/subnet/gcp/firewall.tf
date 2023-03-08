@@ -13,6 +13,6 @@ resource "google_compute_firewall" "private_subnet_rule" {
       ports    = [ "0-65535"]
     }
 
-    direction = "INGREES"
+    direction = "INGRESS"
     source_ranges = ["0.0.0.0/0"]
 }
