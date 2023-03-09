@@ -11,7 +11,6 @@ module "vpc_aws" {
   }
 }
 
-
 module "subnet_aws" {
   source              = "./modules/subnet/aws"
   aws_region          = var.aws_region
@@ -46,12 +45,45 @@ module "subnet_aws" {
     }
   }
 }
-module "nat_aws" {
-  source          = "./modules/nat/aws/"
-  aws_region      = var.aws_region
-  aws_access_key  = var.aws_access_key
-  aws_secret_key  = var.aws_secret_key
-  private_subnet_ids = module.subnet_aws.private_subnet_ids
-  public_subnet_id = module.subnet_aws.public_subnet_id
-  vpc_id          = module.vpc_aws.vpc_id
+
+#module "nat_aws_" {
+#  source             = "./modules/nat/aws/"
+#  aws_region         = var.aws_region
+#  aws_access_key     = var.aws_access_key
+#  aws_secret_key     = var.aws_secret_key
+#  private_subnet_ids = {id1 = "subnet-0fdd3a92381bdfe2f"}
+#  #private_subnet_ids = module.subnet_aws.private_subnet_ids
+#  public_subnet_id   = "subnet-040f21ff455fae9e9"
+#  #public_subnet_id   =  module.subnet_aws.public_subnet_id
+#  vpc_id             = "vpc-05a0f290a5fbc5438"
+#  #vpc_id             = module.vpc_aws.vpc_id
+#}
+#
+#
+#module "nat_aws" {
+#  source             = "./modules/nat/aws/"
+#  aws_region         = var.aws_region
+#  aws_access_key     = var.aws_access_key
+#  aws_secret_key     = var.aws_secret_key
+#  #private_subnet_ids = {id1 = "subnet-0fdd3a92381bdfe2f"}
+#  private_subnet_ids = module.subnet_aws.private_subnet_ids
+#  #public_subnet_id   = "subnet-040f21ff455fae9e9"
+#  public_subnet_id   =  module.subnet_aws.public_subnet_id
+#  #vpc_id             = "vpc-05a0f290a5fbc5438"
+#  vpc_id             = module.vpc_aws.vpc_id
+#}
+#
+module "nat_aws1" {
+  source             = "./modules/nat/aws/"
+  aws_region         = var.aws_region
+  aws_access_key     = var.aws_access_key
+  aws_secret_key     = var.aws_secret_key
+  private_subnet_ids = {id1 = "subnet-01ed3f0a51b32eeb1", id2 ="subnet-03b79e553572c65a0"}
+  #private_subnet_ids = module.subnet_aws.private_subnet_ids
+  public_subnet_id   = "subnet-040f21ff455fae9e9"
+  #public_subnet_id   =  module.subnet_aws.public_subnet_id
+  vpc_id             = "vpc-05a0f290a5fbc5438"
+  #vpc_id             = module.vpc_aws.vpc_id
+  nat_id = "nat-009645508bd61a4e0"
 }
+

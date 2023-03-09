@@ -10,3 +10,6 @@ output "private_nets" {
 output "private_subnet_ids" {
     value = local.private_subnet_ids
 }
+output "sg_id" {
+    value = aws_security_group.aws_sg.id
+}
