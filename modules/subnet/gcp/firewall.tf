@@ -14,5 +14,5 @@ resource "google_compute_firewall" "private_subnet_rule" {
     }
 
     direction = "INGRESS"
-    source_ranges = ["0.0.0.0/0"]
+    source_ranges = ["0.0.0.0/0"] 
 }

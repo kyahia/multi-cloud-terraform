@@ -1,6 +1,6 @@
-# output "vpc_aws" {
-#   value = module.vpc_aws.vpc
-# }
+output "vpc_aws" {
+  value = module.vpc_gcp.vpc
+}
 
 # output "vpc_azure" {
 #   value = module.vpc_azure.vpc

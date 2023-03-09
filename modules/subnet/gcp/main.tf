@@ -5,8 +5,8 @@ provider "google" {
 }
 
 locals {
-  subnet_keys     = [ for k, v in var.subnets : k ]
-  starting_index = length(var.previous_subnets)
+  subnet_keys     = [ for k, v in var.subnets : k ] #first , sec
+  starting_index = length(var.previous_subnets) # 0
 
   subnets = var.cidr_mode == "manual" ? var.subnets : {
     for key in local.subnet_keys : key => {
