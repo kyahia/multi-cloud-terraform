@@ -1,7 +1,7 @@
 module "vpc_gcp" {
   source          = "./modules/vpc/gcp"
-  gcp_credentials = file("./gcp_credentials.json")
-  gcp_project_id  = jsondecode(file("./gcp_credentials.json")).project_id
+  gcp_credentials = file("./creds.json")
+  gcp_project_id  = jsondecode(file("./creds.json")).project_id
   gcp_region      = "us-central1"
   vpc = {
     vpc1 = {
@@ -12,8 +12,8 @@ module "vpc_gcp" {
 
 module "subnet_gcp" {
   source                  = "./modules/subnet/gcp"
-  gcp_credentials         = file("./gcp_credentials.json")
-  gcp_project_id          = jsondecode(file("./gcp_credentials.json")).project_id
+  gcp_credentials         = file("./creds.json")
+  gcp_project_id          = jsondecode(file("./creds.json")).project_id
   gcp_region              = "us-central1"
   cidr_mode               = "auto"
   vpc_name                = module.vpc_gcp.vpc["vpc1"].name
@@ -36,8 +36,8 @@ module "subnet_gcp" {
 
 module "nat_association" {
   source  = "./modules/nat/gcp"
-  gcp_credentials         = file("./gcp_credentials.json")
-  gcp_project_id          = jsondecode(file("./gcp_credentials.json")).project_id
+  gcp_credentials         = file("./creds.json")
+  gcp_project_id          = jsondecode(file("./creds.json")).project_id
   gcp_region              = "us-central1"
   subnetworks = module.subnet_gcp.private_subnets
   vpc_name = module.vpc_gcp.vpc["vpc1"].name
@@ -46,8 +46,8 @@ module "nat_association" {
 
 /* module "subnet_gcp2" {
   source          = "./modules/subnet/gcp"
-  gcp_credentials = file("./gcp_credentials.json")
-  gcp_project_id  = jsondecode(file("./gcp_credentials.json")).project_id
+  gcp_credentials = file("./creds.json")
+  gcp_project_id  = jsondecode(file("./creds.json")).project_id
   gcp_region      = "us-central1"
   vpc_name        = module.vpc_gcp.vpc["vpc1"].name
 

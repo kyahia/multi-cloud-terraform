@@ -1,5 +1,5 @@
-resource "google_compute_firewall" "private_subnet_rule" {
-    name     = "firewall-for-private-subnets"
+resource "google_compute_firewall" "private_subnet_outside_rule" {
+    name     = "firewall-private-subnet-ouside-rule"
     network  = var.vpc_name
 
     deny {
@@ -12,6 +12,8 @@ resource "google_compute_firewall" "private_subnet_rule" {
       ports    = [ "0-65535"]
     }
 
-    direction = "INGRESS"
+    priority = 1003
+
+    destination_ranges = [for subnet in local.private_subnets: subnet.cidr_block]
     source_ranges = ["0.0.0.0/0"]
 }

@@ -6,7 +6,7 @@ provider "google" {
 }
 
 resource "google_compute_router_nat" "nat_gateway" {
-    count = length(var.subnets) > 0 ? 1 : 0 
+    count = length(var.subnetworks) > 0 ? 1 : 0 
     name = "nat-gateway"
     router = google_compute_router.nat_router[0].name #  TODO: create router for nat
 
@@ -24,7 +24,7 @@ resource "google_compute_router_nat" "nat_gateway" {
 }
 
 resource "google_compute_router" "nat_router" {
-    count = length(var.subnets) > 0 ? 1 : 0
+    count = length(var.subnetworks) > 0 ? 1 : 0
     name = "nat-router"
     network = var.vpc_name
 }
