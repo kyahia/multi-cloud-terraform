@@ -1,6 +1,5 @@
 resource "google_compute_firewall" "private_subnet_rule" {
-    for_each = local.private_subnets
-    name     = "firewall-${each.value.name}"
+    name     = "firewall-for-private-subnets"
     network  = var.vpc_name
 
     deny {
@@ -14,5 +13,5 @@ resource "google_compute_firewall" "private_subnet_rule" {
     }
 
     direction = "INGRESS"
-    source_ranges = ["0.0.0.0/0"] 
+    source_ranges = ["0.0.0.0/0"]
 }

@@ -1,4 +1,4 @@
-variable "subnets" {
+variable "subnetworks" {
   type = map(any)
   default = {}
 }

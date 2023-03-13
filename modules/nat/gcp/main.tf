@@ -14,9 +14,12 @@ resource "google_compute_router_nat" "nat_gateway" {
 
     source_subnetwork_ip_ranges_to_nat = "LIST_OF_SUBNETWORKS"
 
-    subnetwork { 
-        name = "Private subnet connected with nat"
-        source_ip_ranges_to_nat = [for subnet in var.subnets: subnet.ip_cidr_range]
+    dynamic "subnetwork"{
+        for_each = var.subnetworks
+        content{
+            name                    = subnetwork.value.name
+            source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
+        }
     }
 }
 

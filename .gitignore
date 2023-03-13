@@ -1,6 +1,6 @@
 # Local .terraform directories
 **/.terraform/*
-gcp_credentials.json
+creds.json
 .terraform/
 # .tfstate files
 *.tfstate
