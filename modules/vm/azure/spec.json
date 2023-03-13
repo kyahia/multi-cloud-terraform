@@ -1,0 +1,16 @@
+
+{
+    "2_8_X86": "Standard_D2s_v3",
+    "1_2_X86" : "Standard_A1_v2",	
+    "2_4_X86" : "Standard_A2_v2",
+    "4_8_X86" : "Standard_A4_v2",
+    "4_16_X86" : "Standard_B4ms",
+    "8_16_X86" : "Standard_A8_v2",
+    "8_32_X86" : "Standard_B8ms",
+    "2_4_ARM" : "Standard_D2plds_v5",
+    "2_8_ARM" : "Standard_D2pds_v5",
+    "4_8_ARM" : "Standard_D4plds_v5",
+    "4_16_ARM" : "Standard_D4pds_v5",
+    "8_16_ARM" : "Standard_D8plds_v5",
+    "8_32_ARM" : "Standard_D8pds_v5"
+}

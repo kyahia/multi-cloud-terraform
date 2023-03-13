@@ -1,6 +1,3 @@
-variable "vms" {
-}
-
 variable "resource_group_name" {
 }
 
@@ -10,7 +7,13 @@ variable "location" {
 variable "azure_subscription_id" {
 }
 
-variable "rule_priority" {
-  type    = number
-  default = 100
+variable "name" {  
+}
+
+variable "subnets" {  
+}
+
+variable "nat_id" {
+  type = string
+  default = ""
 }

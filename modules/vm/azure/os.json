@@ -1,0 +1,119 @@
+{
+    "Debian_10_X86": {
+        "publisher":  "Debian",
+        "offer":  "debian-10",
+        "sku":  "10-gen2",
+        "version": "latest"
+    },
+
+    "Debian_11_X86": {
+        "publisher":  "Debian",
+        "offer":  "debian-11",
+        "sku":  "11-gen2",
+        "version": "latest"
+    },
+
+    "Debian_11_arm": {
+        "publisher":  "Debian",
+        "offer":  "debian-11",
+        "sku":  "11-backports-arm64",
+        "version": "latest"
+    },
+
+    "Centos_7_X86": {
+        "publisher":  "procomputers",
+        "offer":  "centos-7-gen2",
+        "sku":  "centos-7-gen2",
+        "version": "latest"
+    },
+
+    "Centos_8_X86": {
+        "publisher":  "procomputers",
+        "offer":  "centos-8",
+        "sku":  "centos-8",
+        "version": "latest"
+    },
+
+    "Fedora_36_X86": {
+        "publisher":  "ntegralinc1586961136942",
+        "offer":  "ntg_fedora_36",
+        "sku":  "ntg_fedora_36",
+        "version": "latest"
+    },
+
+    "Fedora_37_X86": {
+        "publisher":  "ntegralinc1586961136942",
+        "offer":  "ntg_fedora_37",
+        "sku":  "ntg_fedora_37",
+        "version": "latest"
+    },
+
+    "Ubuntu_18_X86": {
+        "publisher":  "Canonical",
+        "offer":  "0001-com-ubuntu-minimal-bionic",
+        "sku":  "minimal-18_04-lts-gen2",
+        "version": "latest"
+    },
+
+    "Ubuntu_20_X86": {
+        "publisher":  "Canonical",
+        "offer":  "0001-com-ubuntu-minimal-focal",
+        "sku":  "minimal-20_04-lts-gen2",
+        "version": "latest"
+    },
+
+    "Ubuntu_22_X86": {
+        "publisher":  "Canonical",
+        "offer":  "0001-com-ubuntu-minimal-jammy",
+        "sku":  "minimal-22_04-lts-gen2",
+        "version": "latest"
+    },
+
+    "Ubuntu_18_Arm": {
+        "publisher":  "Canonical",
+        "offer":  "UbuntuServer",
+        "sku":  "18_04-lts-arm64",
+        "version": "latest"
+    },
+
+    "Ubuntu_20_Arm": {
+        "publisher":  "Canonical",
+        "offer":  "0001-com-ubuntu-server-focal",
+        "sku":  "20_04-lts-arm64",
+        "version": "latest"
+    },
+
+    "Ubuntu_22_Arm": {
+        "publisher":  "Canonical",
+        "offer":  "0001-com-ubuntu-server-jammy",
+        "sku":  "22_04-lts-arm64",
+        "version": "latest"
+    }
+
+    ,
+
+    "Windows_2016_X86": {
+        "publisher":  "MicrosoftWindowsServer",
+        "offer":  "WindowsServer",
+        "sku":  "2016-Datacenter",
+        "version": "latest"
+    }
+    ,
+
+    "Windows_2019_X86": {
+        "publisher":  "MicrosoftWindowsServer",
+        "offer":  "WindowsServer",
+        "sku":  "2019-Datacenter",
+        "version": "latest"
+    }
+    ,
+
+    "Windows_2022_X86": {
+        "publisher":  "MicrosoftWindowsServer",
+        "offer":  "WindowsServer",
+        "sku":  "2022-datacenter",
+        "version": "latest"
+    }
+
+
+}

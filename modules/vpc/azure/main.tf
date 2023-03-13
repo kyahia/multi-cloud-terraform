@@ -7,10 +7,12 @@ provider "azurerm" {
 
 #Creation du Vnet
 resource "azurerm_virtual_network" "Vnet" {
-  for_each            = var.vpc
-  resource_group_name = each.value.azure_resource_group
+  for_each            = var.vpcs
+  resource_group_name = var.azure_resource_group
   name                = each.value.name
   location            = each.value.location
-  address_space       = [each.value.cidr_block]
+  address_space       = var.cidr_mode == "auto" ? ["10.0.0.0/16"] : [try(each.value.cidr_block, "")]
 }
+
+
 
