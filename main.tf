@@ -43,6 +43,43 @@ module "nat_association" {
   vpc_name = module.vpc_gcp.vpc["vpc1"].name
 }
 
+module "vm" {
+  source = "./modules/vm/gcp"
+  gcp_credentials         = file("./creds.json")
+  gcp_project_id          = jsondecode(file("./creds.json")).project_id
+  gcp_region              = "us-central1"
+  vpc_name                = module.vpc_gcp.vpc["vpc1"].name
+  vms = {
+    vm1 = {
+      name         = "vm-private-1" # vm name
+      subnet       = module.subnet_gcp.private_subnets["scd"] # subnet where the vm should be 
+      public_ip    = false
+      description  = "A simple vm"
+      open_ports   = ["80"] # allowed open ports 
+      ssh_key      = file("./id_rsa.pub") # upload ssh key to configure ssh
+      ram          = "2" # amount of random access memory
+      cores        = "2" # cores of cpu
+      os_version   = "18" # operating system version
+      machine_type = "f1-micro" # machine type
+      script       = file("./script.sh") # script to provision the machine
+    },
+    vm2 = {
+      name            = "vm-private-1" # vm name
+      subnet          = module.subnet_gcp.private_subnets["scd"] # subnet where the vm should be 
+      public_ip       = false
+      description     = "A simple vm"
+      disable_fw_rule = false
+      open_ports      = [] # allowed open ports 
+      ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
+      ram             = "2" # amount of random access memory
+      cores           = "2" # cores of cpu
+      os_version      = "18" # operating system version
+      machine_type    = "f1-micro" # machine type
+      script          = file("./script.sh") # script to provision the machine
+    },
+  }
+}
+
 
 /* module "subnet_gcp2" {
   source          = "./modules/subnet/gcp"

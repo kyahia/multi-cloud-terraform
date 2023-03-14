@@ -1,6 +1,6 @@
 #!/bin/bash
-
-sudo apt update -y
-sudo apt install apache2 -y
-echo "<h1>Hello world</h1>" $(hostname) > /var/www/html/index.html
-
+sudo apt-get update -y
+sudo apt-get install wget -y
+sudo wget https://raw.githubusercontent.com/ixec-lab/simpleAppForTerraform/main/app.py -O ~/app.py
+sudo apt-get install python3 -y
+sudo python3 ~/app.py&
