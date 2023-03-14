@@ -95,12 +95,31 @@ module "compute_vms" {
   vpc_id            = module.vpc_aws.vpc_id
   private_subnet_id = module.subnet_aws.public_subnet_id
   available_ports    = { allow_http = { port_number = 80 }, allow_ssh = { port_number = 22 } }
-  #ami_name = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
-  #ami_name = "Fedora-32-*x86_64-hvm-*-"
-  os_name          = "centos"
-  os_version       = "7"
+  os_name          = "ubuntu"
+  os_version       = "18.04"
   cpu_architecture = "x86_64"
   cpu_cores        = 1
   vm_ram           = 2
   vm_number        = 2
 }
+
+module "load_balancer" {
+  source            = "./modules/load_balancer/aws"
+  aws_region        = var.aws_region
+  aws_access_key    = var.aws_access_key
+  aws_secret_key    = var.aws_secret_key
+  vpc_id            = module.vpc_aws.vpc_id
+  private_subnet_id = module.subnet_aws.public_subnet_id
+  available_ports    = { allow_http = { port_number = 80 }, allow_ssh = { port_number = 22 } }
+  os_name          = "ubuntu"
+  os_version       = "18.04"
+  cpu_architecture = "x86_64"
+  cpu_cores        = 1
+  vm_ram           = 2
+  vm_number        = 2
+}
+
+# lb-type
+# vm-id
+# security_groups
+# subnets

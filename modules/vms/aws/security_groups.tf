@@ -11,6 +11,15 @@ resource "aws_security_group" "sg_aws" {
       cidr_blocks = ["0.0.0.0/0"]
     }
   }
+  dynamic "egress" {
+    for_each = var.available_ports
+    content {
+      from_port   = egress.value["port_number"]
+      to_port     = egress.value["port_number"]
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
 
   tags = {
     Name = "sg"
