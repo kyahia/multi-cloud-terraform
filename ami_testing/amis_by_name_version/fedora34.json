@@ -1,0 +1,299 @@
+{
+    "Images": [
+        {
+            "Architecture": "x86_64",
+            "CreationDate": "2021-03-18T02:34:08.000Z",
+            "ImageId": "ami-00da07c8f705da39b",
+            "ImageLocation": "125523088429/Fedora-Cloud-Base-34_Beta-1.3.x86_64-hvm-us-east-1-gp2-0",
+            "ImageType": "machine",
+            "Public": true,
+            "OwnerId": "125523088429",
+            "PlatformDetails": "Linux/UNIX",
+            "UsageOperation": "RunInstances",
+            "State": "available",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-02547788ca984441d",
+                        "VolumeSize": 6,
+                        "VolumeType": "gp2",
+                        "Encrypted": false
+                    }
+                }
+            ],
+            "Description": "Fedora AMI Description",
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "Name": "Fedora-Cloud-Base-34_Beta-1.3.x86_64-hvm-us-east-1-gp2-0",
+            "RootDeviceName": "/dev/sda1",
+            "RootDeviceType": "ebs",
+            "VirtualizationType": "hvm",
+            "DeprecationTime": "2023-03-18T02:34:08.000Z"
+        },
+        {
+            "Architecture": "x86_64",
+            "CreationDate": "2021-03-13T23:49:37.000Z",
+            "ImageId": "ami-080da051aabec0b58",
+            "ImageLocation": "125523088429/Fedora-Cloud-Base-34_Beta-1.2.x86_64-hvm-us-east-1-gp2-0",
+            "ImageType": "machine",
+            "Public": true,
+            "OwnerId": "125523088429",
+            "PlatformDetails": "Linux/UNIX",
+            "UsageOperation": "RunInstances",
+            "State": "available",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-0c3d389dd80fef3fc",
+                        "VolumeSize": 6,
+                        "VolumeType": "gp2",
+                        "Encrypted": false
+                    }
+                }
+            ],
+            "Description": "Fedora AMI Description",
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "Name": "Fedora-Cloud-Base-34_Beta-1.2.x86_64-hvm-us-east-1-gp2-0",
+            "RootDeviceName": "/dev/sda1",
+            "RootDeviceType": "ebs",
+            "VirtualizationType": "hvm",
+            "DeprecationTime": "2023-03-13T23:49:37.000Z"
+        },
+        {
+            "Architecture": "x86_64",
+            "CreationDate": "2021-06-09T19:01:08.000Z",
+            "ImageId": "ami-0883f2d26628ad0cf",
+            "ImageLocation": "aws-marketplace/Fedora-Cloud-Base-34-1.2.x86_64-hvm-us-east-1-standard-0-502fb293-7b72-4a39-ae2a-9917cae2ee7e-ami-0f987246479382436.4",
+            "ImageType": "machine",
+            "Public": true,
+            "OwnerId": "679593333241",
+            "PlatformDetails": "Linux/UNIX",
+            "UsageOperation": "RunInstances",
+            "ProductCodes": [
+                {
+                    "ProductCodeId": "4qwehlrxvcsc9mxvcn5sx08zi",
+                    "ProductCodeType": "marketplace"
+                }
+            ],
+            "State": "available",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-006ec0cc18036d543",
+                        "VolumeSize": 6,
+                        "VolumeType": "standard",
+                        "Encrypted": false
+                    }
+                }
+            ],
+            "Description": "Fedora Cloud Base 34 (x86_64) standard",
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "ImageOwnerAlias": "aws-marketplace",
+            "Name": "Fedora-Cloud-Base-34-1.2.x86_64-hvm-us-east-1-standard-0-502fb293-7b72-4a39-ae2a-9917cae2ee7e-ami-0f987246479382436.4",
+            "RootDeviceName": "/dev/sda1",
+            "RootDeviceType": "ebs",
+            "VirtualizationType": "hvm",
+            "DeprecationTime": "2023-06-09T19:01:08.000Z"
+        },
+        {
+            "Architecture": "x86_64",
+            "CreationDate": "2021-03-18T02:25:34.000Z",
+            "ImageId": "ami-011696656634da9b6",
+            "ImageLocation": "125523088429/Fedora-Cloud-Base-34_Beta-1.3.x86_64-hvm-us-east-1-standard-0",
+            "ImageType": "machine",
+            "Public": true,
+            "OwnerId": "125523088429",
+            "PlatformDetails": "Linux/UNIX",
+            "UsageOperation": "RunInstances",
+            "State": "available",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-0ba4fc7e836ee1e93",
+                        "VolumeSize": 6,
+                        "VolumeType": "standard",
+                        "Encrypted": false
+                    }
+                }
+            ],
+            "Description": "Fedora AMI Description",
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "Name": "Fedora-Cloud-Base-34_Beta-1.3.x86_64-hvm-us-east-1-standard-0",
+            "RootDeviceName": "/dev/sda1",
+            "RootDeviceType": "ebs",
+            "VirtualizationType": "hvm",
+            "DeprecationTime": "2023-03-18T02:25:34.000Z"
+        },
+        {
+            "Architecture": "x86_64",
+            "CreationDate": "2021-04-23T13:56:12.000Z",
+            "ImageId": "ami-09926e4ed688862af",
+            "ImageLocation": "125523088429/Fedora-Cloud-Base-34-1.2.x86_64-hvm-us-east-1-standard-0",
+            "ImageType": "machine",
+            "Public": true,
+            "OwnerId": "125523088429",
+            "PlatformDetails": "Linux/UNIX",
+            "UsageOperation": "RunInstances",
+            "State": "available",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-0bb5c8912acc2666c",
+                        "VolumeSize": 6,
+                        "VolumeType": "standard",
+                        "Encrypted": false
+                    }
+                }
+            ],
+            "Description": "Fedora AMI Description",
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "Name": "Fedora-Cloud-Base-34-1.2.x86_64-hvm-us-east-1-standard-0",
+            "RootDeviceName": "/dev/sda1",
+            "RootDeviceType": "ebs",
+            "VirtualizationType": "hvm",
+            "DeprecationTime": "2023-04-23T13:56:12.000Z"
+        },
+        {
+            "Architecture": "x86_64",
+            "CreationDate": "2021-03-13T23:40:17.000Z",
+            "ImageId": "ami-061043341740d4841",
+            "ImageLocation": "125523088429/Fedora-Cloud-Base-34_Beta-1.2.x86_64-hvm-us-east-1-standard-0",
+            "ImageType": "machine",
+            "Public": true,
+            "OwnerId": "125523088429",
+            "PlatformDetails": "Linux/UNIX",
+            "UsageOperation": "RunInstances",
+            "State": "available",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-07d9cbdd54041d0d0",
+                        "VolumeSize": 6,
+                        "VolumeType": "standard",
+                        "Encrypted": false
+                    }
+                }
+            ],
+            "Description": "Fedora AMI Description",
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "Name": "Fedora-Cloud-Base-34_Beta-1.2.x86_64-hvm-us-east-1-standard-0",
+            "RootDeviceName": "/dev/sda1",
+            "RootDeviceType": "ebs",
+            "VirtualizationType": "hvm",
+            "DeprecationTime": "2023-03-13T23:40:17.000Z"
+        },
+        {
+            "Architecture": "x86_64",
+            "CreationDate": "2021-04-22T03:14:55.000Z",
+            "ImageId": "ami-0ee91e25908dcb615",
+            "ImageLocation": "125523088429/Fedora-Cloud-Base-34-1.1.x86_64-hvm-us-east-1-gp2-0",
+            "ImageType": "machine",
+            "Public": true,
+            "OwnerId": "125523088429",
+            "PlatformDetails": "Linux/UNIX",
+            "UsageOperation": "RunInstances",
+            "State": "available",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-078860557c4468374",
+                        "VolumeSize": 6,
+                        "VolumeType": "gp2",
+                        "Encrypted": false
+                    }
+                }
+            ],
+            "Description": "Fedora AMI Description",
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "Name": "Fedora-Cloud-Base-34-1.1.x86_64-hvm-us-east-1-gp2-0",
+            "RootDeviceName": "/dev/sda1",
+            "RootDeviceType": "ebs",
+            "VirtualizationType": "hvm",
+            "DeprecationTime": "2023-04-22T03:14:55.000Z"
+        },
+        {
+            "Architecture": "x86_64",
+            "CreationDate": "2021-04-23T14:04:38.000Z",
+            "ImageId": "ami-09e08e82e8f927ba4",
+            "ImageLocation": "125523088429/Fedora-Cloud-Base-34-1.2.x86_64-hvm-us-east-1-gp2-0",
+            "ImageType": "machine",
+            "Public": true,
+            "OwnerId": "125523088429",
+            "PlatformDetails": "Linux/UNIX",
+            "UsageOperation": "RunInstances",
+            "State": "available",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-06939dfaf33f272a1",
+                        "VolumeSize": 6,
+                        "VolumeType": "gp2",
+                        "Encrypted": false
+                    }
+                }
+            ],
+            "Description": "Fedora AMI Description",
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "Name": "Fedora-Cloud-Base-34-1.2.x86_64-hvm-us-east-1-gp2-0",
+            "RootDeviceName": "/dev/sda1",
+            "RootDeviceType": "ebs",
+            "VirtualizationType": "hvm",
+            "DeprecationTime": "2023-04-23T14:04:38.000Z"
+        },
+        {
+            "Architecture": "x86_64",
+            "CreationDate": "2021-04-22T03:07:11.000Z",
+            "ImageId": "ami-0b7a058ac94dfb26f",
+            "ImageLocation": "125523088429/Fedora-Cloud-Base-34-1.1.x86_64-hvm-us-east-1-standard-0",
+            "ImageType": "machine",
+            "Public": true,
+            "OwnerId": "125523088429",
+            "PlatformDetails": "Linux/UNIX",
+            "UsageOperation": "RunInstances",
+            "State": "available",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-0674ab712ac17e8ae",
+                        "VolumeSize": 6,
+                        "VolumeType": "standard",
+                        "Encrypted": false
+                    }
+                }
+            ],
+            "Description": "Fedora AMI Description",
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "Name": "Fedora-Cloud-Base-34-1.1.x86_64-hvm-us-east-1-standard-0",
+            "RootDeviceName": "/dev/sda1",
+            "RootDeviceType": "ebs",
+            "VirtualizationType": "hvm",
+            "DeprecationTime": "2023-04-22T03:07:11.000Z"
+        }
+    ]
+}
