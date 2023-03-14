@@ -1,5 +1,4 @@
 variable "vms" {
-    type = map(any) 
 }
 
 variable "gcp_credentials" {

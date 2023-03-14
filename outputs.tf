@@ -1,6 +1,10 @@
-output "vpc_aws" {
+output "vpc_gcp" {
   value = module.vpc_gcp.vpc
-}
+} 
+
+/* output "os" {
+  value = module.vm.os_name
+} */
 
 # output "vpc_azure" {
 #   value = module.vpc_azure.vpc
@@ -23,3 +27,7 @@ output "vpc_aws" {
 # output "azure_dns" {
 #   value = var.enable_azure ? module.azure_solution[0].dns_ip : ""
 # }
+
+output "mach" {
+  value = module.vm.machine_filter
+}
