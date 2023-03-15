@@ -1,5 +1,5 @@
-azure_subscription_id = "964df7ca-3ba4-48b6-a695-1ed9db5723f8"
-azure_resource_group  = "1-613f77a8-playground-sandbox"
+azure_subscription_id = "4cedc5dd-e3ad-468d-bf66-32e31bdb9148"
+azure_resource_group  = "1-b215840b-playground-sandbox"
 
 # gcp_credentials_path = "./gcp_credentials.json"
 

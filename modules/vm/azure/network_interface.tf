@@ -13,7 +13,7 @@ provider "azurerm" {
 ####
 locals {
   public_vms = {
-    for k, v in var.vms : k => v if v.pub_ip == "enable"
+    for k, v in var.vms : k => v if v.pub_ip == true
   }
 }
 
@@ -40,7 +40,7 @@ resource "azurerm_network_interface" "ni" {
     name                          = "${each.value.name}-ipconfig"
     subnet_id                     = each.value.subnet
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = each.value.pub_ip == "enable" ? azurerm_public_ip.vm_ip[each.key].id : ""
+    public_ip_address_id = each.value.pub_ip == true ? azurerm_public_ip.vm_ip[each.key].id : ""
   }
 }
 

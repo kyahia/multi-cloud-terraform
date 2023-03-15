@@ -8,7 +8,7 @@ resource "azurerm_public_ip" "lb_pip" {
 }
 
 # CREATE AN APPLICATION LOAD BALANCER
-resource "azurerm_application_gateway" "alb" {
+resource "azurerm_application_gateway" "application_load_balancer" {
   name                = "app_lb"
   resource_group_name = var.resource_group_name
   location            = var.location
