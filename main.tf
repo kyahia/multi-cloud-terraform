@@ -34,58 +34,28 @@ module "subnet_aws" {
     sub3 = {
       type              = "private"
       cidr_block        = "10.0.3.0/24"
-      availability_zone = "us-east-1a"
+      availability_zone = "us-east-1b"
       name              = "subnet-3"
     }
     sub4 = {
       type              = "private"
       cidr_block        = "10.0.4.0/24"
-      availability_zone = "us-east-1a"
+      availability_zone = "us-east-1b"
       name              = "subnet-4"
     }
   }
 }
 
-#module "nat_aws_" {
-#  source             = "./modules/nat/aws/"
-#  aws_region         = var.aws_region
-#  aws_access_key     = var.aws_access_key
-#  aws_secret_key     = var.aws_secret_key
-#  private_subnet_ids = {id1 = "subnet-0fdd3a92381bdfe2f"}
-#  #private_subnet_ids = module.subnet_aws.private_subnet_ids
-#  public_subnet_id   = "subnet-040f21ff455fae9e9"
-#  #public_subnet_id   =  module.subnet_aws.public_subnet_id
-#  vpc_id             = "vpc-05a0f290a5fbc5438"
-#  #vpc_id             = module.vpc_aws.vpc_id
-#}
+module "nat_aws" {
+  source             = "./modules/nat/aws/"
+  aws_region         = var.aws_region
+  aws_access_key     = var.aws_access_key
+  aws_secret_key     = var.aws_secret_key
+  vpc_id             = module.vpc_aws.vpc_id
+  private_subnet_ids =  module.subnet_aws.private_subnet_ids
+  public_subnet_id   = module.subnet_aws.public_subnet_id
+}
 
-
-#module "nat_aws" {
-#  source             = "./modules/nat/aws/"
-#  aws_region         = var.aws_region
-#  aws_access_key     = var.aws_access_key
-#  aws_secret_key     = var.aws_secret_key
-#  #private_subnet_ids = {id1 = "subnet-0fdd3a92381bdfe2f"}
-#  private_subnet_ids = module.subnet_aws.private_subnet_ids
-#  #public_subnet_id   = "subnet-040f21ff455fae9e9"
-#  public_subnet_id   =  module.subnet_aws.public_subnet_id
-#  #vpc_id             = "vpc-05a0f290a5fbc5438"
-#  vpc_id             = module.vpc_aws.vpc_id
-#}
-
-
-#module "nat_aws1" {
-#  source             = "./modules/nat/aws/"
-#  aws_region         = var.aws_region
-#  aws_access_key     = var.aws_access_key
-#  aws_secret_key     = var.aws_secret_key
-#  private_subnet_ids = {id1 = "subnet-01ed3f0a51b32eeb1", id2 ="subnet-03b79e553572c65a0"}
-#  private_subnet_ids = module.subnet_aws.private_subnet_ids
-#  public_subnet_id   = "subnet-040f21ff455fae9e9"
-#  vpc_id             = "vpc-05a0f290a5fbc5438"
-#  #vpc_id             = module.vpc_aws.vpc_id
-#  nat_id = "nat-009645508bd61a4e0"
-#}
 
 module "compute_vms" {
   source            = "./modules/vms/aws"
@@ -95,6 +65,17 @@ module "compute_vms" {
   vpc_id            = module.vpc_aws.vpc_id
   private_subnet_id = module.subnet_aws.public_subnet_id
   available_ports    = { allow_http = { port_number = 80 }, allow_ssh = { port_number = 22 } }
+  #vms = {
+  #  vm1 = {
+  #    name = ""
+  #    os_name          = "ubuntu"
+  #    os_version       = "18.04"
+  #    cpu_architecture = "x86_64"
+  #    cpu_cores        = 1
+  #    vm_ram           = 2
+  #    vm_number        = 2
+  #  },
+  #}
   os_name          = "ubuntu"
   os_version       = "18.04"
   cpu_architecture = "x86_64"
@@ -104,22 +85,16 @@ module "compute_vms" {
 }
 
 module "load_balancer" {
-  source            = "./modules/load_balancer/aws"
+  source            = "./modules/load_balancers/aws"
   aws_region        = var.aws_region
   aws_access_key    = var.aws_access_key
   aws_secret_key    = var.aws_secret_key
   vpc_id            = module.vpc_aws.vpc_id
-  private_subnet_id = module.subnet_aws.public_subnet_id
-  available_ports    = { allow_http = { port_number = 80 }, allow_ssh = { port_number = 22 } }
-  os_name          = "ubuntu"
-  os_version       = "18.04"
-  cpu_architecture = "x86_64"
-  cpu_cores        = 1
-  vm_ram           = 2
-  vm_number        = 2
+  #public_subnet_id = module.subnet_aws.public_subnet_id
+  subnets = [module.subnet_aws.private_subnet_id, module.subnet_aws.public_subnet_id]
+  internal_load_balancer = false
+  load_balancer_type = "network"
+  #available_ports    = { allow_http = { port_number = 80 }}
+  sg_id = module.compute_vms.sg_id
+  vm_ids = module.compute_vms.vm_ids
 }
-
-# lb-type
-# vm-id
-# security_groups
-# subnets

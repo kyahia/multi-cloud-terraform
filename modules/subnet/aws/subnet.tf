@@ -15,8 +15,6 @@ resource "aws_subnet" "subnets" {
 }
 
 locals {
-  public_subnets = {for key, value in var.subnets: key=>key if value.type == "public"}
-  private_subnets = {for key, value in var.subnets: key=>key if value.type == "private"}
-  public_subnet_names = [for key, value in local.public_subnets: value]
-  private_subnet_ids = {for key, value in local.private_subnets: key => aws_subnet.subnets[key].id}
+  public_subnet_ids = {for key, value in var.subnets: key=>aws_subnet.subnets[key].id if value.type == "public"}
+  private_subnet_ids = {for key, value in var.subnets: key=>aws_subnet.subnets[key].id if value.type == "private"}
 }
