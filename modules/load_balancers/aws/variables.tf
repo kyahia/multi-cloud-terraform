@@ -14,11 +14,12 @@ variable "subnets" {
 }
 variable "sg_id" {
     type = string
+    default = ""
 }
 variable "vm_ids" {
     type = map(string)
 }
-variable "internal_load_balancer" {
+variable "internal" {
     type = bool
     default = false
 }

@@ -90,11 +90,8 @@ module "load_balancer" {
   aws_access_key    = var.aws_access_key
   aws_secret_key    = var.aws_secret_key
   vpc_id            = module.vpc_aws.vpc_id
-  #public_subnet_id = module.subnet_aws.public_subnet_id
   subnets = [module.subnet_aws.private_subnet_id, module.subnet_aws.public_subnet_id]
-  internal_load_balancer = false
-  load_balancer_type = "network"
-  #available_ports    = { allow_http = { port_number = 80 }}
-  sg_id = module.compute_vms.sg_id
+  internal = false
+  load_balancer_type = "application"
   vm_ids = module.compute_vms.vm_ids
 }
