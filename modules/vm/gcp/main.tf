@@ -100,15 +100,15 @@ locals {
 }
 
 resource "google_compute_instance" "vms" {
-    for_each     = var.vms  
+    for_each     = var.vms 
     name         = each.value.name  
-    machine_type = values(local.selected[each.key])[0]
-
-    tags = length(each.value.open_ports) > 0 ? ["${each.value.name}_fw_auth"] : []
+    machine_type = try(values(local.selected[each.key])[0],"e2-standart-2")
+    zone = var.zone
+    tags = length(each.value.open_ports) > 0 ? ["${each.value.name}-fw-auth"] : []
 
     boot_disk {    
         initialize_params {      
-            image = "ubuntu-os-cloud/ubuntu-2004-lts"  
+            image = "debian-cloud/debian-10"  
         }  
     }  
     network_interface {    
@@ -118,7 +118,12 @@ resource "google_compute_instance" "vms" {
             content {             
 
             }    
-        }  
+        }
     }
-    metadata_startup_script = try(each.value.script, "")
+
+    metadata_startup_script = each.value.script
+
+    metadata = {
+        ssh-keys = "${each.value.username}:${each.value.ssh_key}"
+    }
 }

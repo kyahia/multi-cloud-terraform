@@ -16,3 +16,7 @@ variable "gcp_region" {
 variable "vpc_name" {
     type = string
 }
+
+variable "zone" {
+  type = string
+}

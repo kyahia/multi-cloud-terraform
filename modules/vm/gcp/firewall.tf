@@ -31,6 +31,6 @@ resource "google_compute_firewall" "rule_vm_auth_ports" {
     }
 
     # if public ip flag is on the firewall expose machine services to internet else open ports internaly with all subnets 
-    source_ranges = each.value.public_ip ? [ "0.0.0.0/0" ] : ["10.0.0.0/8"]
-    target_tags = ["${each.value.name}_fw_auth"]
+    source_ranges = ["0.0.0.0/0"] #each.value.public_ip ? [ "0.0.0.0/0" ] : [ auth ip ]
+    target_tags = ["${each.value.name}-fw-auth"]
 }

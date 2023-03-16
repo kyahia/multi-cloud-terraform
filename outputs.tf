@@ -1,6 +1,6 @@
 output "vpc_gcp" {
   value = module.vpc_gcp.vpc
-} 
+}
 
 /* output "os" {
   value = module.vm.os_name
@@ -28,6 +28,11 @@ output "vpc_gcp" {
 #   value = var.enable_azure ? module.azure_solution[0].dns_ip : ""
 # }
 
-output "mach" {
+output "filtred_machines" {
   value = module.vm.machine_filter
+}
+
+output "islem" {
+  value = module.load_balancer.vm
+  sensitive = true
 }
