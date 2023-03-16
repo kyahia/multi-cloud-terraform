@@ -9,5 +9,7 @@ variable "azure_resource_group" {
 }
 
 variable "cidr_mode" {
+  type = string
+  default = "auto"
 }
 

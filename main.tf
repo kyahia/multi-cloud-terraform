@@ -5,7 +5,7 @@ module "vpc_azure" {
   cidr_mode             = "auto" # auto || "manual"
   vpcs = {
     vpc1 = {
-      name       = "Vnet-1"
+      name       = "Vnet-1"  
       cidr_block = "20.0.0.0/16"
       location   = "South Central US"
     } #,
@@ -87,7 +87,6 @@ module "vm_azure" {
       # ssh_key   = file("./id_rsa.pub") #not required
 
       configuration = "auto" # "auto" || "manual"
-
       ram         = "8"
       cores       = "2"
       os          = "Ubuntu"
@@ -175,7 +174,6 @@ module "alert" {
   name                  = "my_alert"                             # required
   window_size           = "PT1M"                                 #not required
   threshold             = 10                                     #not required
-  severity              = 0                                      # not required
   load_balancer_id      = module.load_balancer2.load_balancer.id #required
 }
 

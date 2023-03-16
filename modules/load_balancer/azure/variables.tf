@@ -26,10 +26,11 @@ variable "vms" {
 
 
 variable "type" {
-    default = "External"
+    default = "application"
 }
 
 variable "scheme" {
+    default = "External"
 }
 
 variable "virtual_network_id" {

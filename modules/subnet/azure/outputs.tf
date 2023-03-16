@@ -6,7 +6,7 @@ output "public_subnets" {
 }
 
 output "subnets" {
-  value = flatten([azurerm_subnet.public_subnets, azurerm_subnet.private_subnets])
+  value = merge(azurerm_subnet.public_subnets, azurerm_subnet.private_subnets)
 }
 
 
