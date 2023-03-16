@@ -10,7 +10,7 @@ variable "aws_region" {
 variable "vpc_id" {
   type = string
 }
-variable "private_subnet_id" {
+variable "subnet_id" {
   type = string
 }
 variable "available_ports" {

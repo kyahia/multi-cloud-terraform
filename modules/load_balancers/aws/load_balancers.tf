@@ -28,7 +28,7 @@ resource "aws_lb_target_group" "lb_target_group" {
   health_check {
     healthy_threshold   = 2
     unhealthy_threshold = 2
-    timeout             = 15
+    timeout             = 3
     interval            = 30
     path                = "/"
   }

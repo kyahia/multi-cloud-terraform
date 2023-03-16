@@ -37,7 +37,7 @@ resource "aws_key_pair" "my_key_pair" {
 
 resource "aws_instance" "vms" {
   ami = data.aws_ami.vimages.id
-  subnet_id              = var.private_subnet_id
+  subnet_id              = var.subnet_id
   vpc_security_group_ids = [aws_security_group.sg_aws.id]
   instance_type          = [for machine_type, cpu_ram in local.client_architecture_vms : machine_type if cpu_ram == "${var.cpu_cores}_${var.vm_ram}"][0]
   associate_public_ip_address = false
