@@ -52,7 +52,7 @@ module "vm" {
   vpc_name                = module.vpc_gcp.vpc["vpc1"].name
   vms = {
     vm1 = {
-      name            = "vm-private-1" # vm name
+      name            = "vm-private-1" # vm name must include private or public , TODO: we need to prevent this
       subnet          = module.subnet_gcp.private_subnets["scd"] # subnet where the vm should be 
       public_ip       = false
       description     = "A simple vm"
@@ -108,8 +108,8 @@ module "load_balancer" {
   #vpc_name                = module.vpc_gcp.vpc["vpc1"].name
   name                    = "prod-application-lb"
   description             = "a simple application load balancer"
-  type                    = "network" # or network
-  exposure                = "external" # or external
+  type                    = "application" # or network
+  exposure                = "external" # or internal
   bind_port               = "80"
   bind_port_name          = "http" # name as label to index the port
   target_vms              = module.vm.avl_vm # balance traffic to this servers
@@ -121,6 +121,47 @@ module "load_balancer" {
     port                = 80
     request_path        = "/"
     proxy_header        = "NONE"
+  }
+  /* alert                   = {
+    name        = "alertRequestCount" # other type will be available in futur versions
+    combiner    = "OR" # AND
+    condition   = {
+      name               = "condition-name"
+      duration           = 60
+      comparaison        = ">" # "<"
+      threshold_value    = 10
+      alignment_period   = "300" # en seconde 
+      per_series_aligner = "ALIGN_SUM" # other aligners will be available in futur versions
+    }
+
+    notification = {
+      name  = "email notifier"
+      type  = "email" # other types will be available in futur versions
+      email = "islem.meghnine06@gmail.com" # email to rcv notification
+    }
+  } */
+}
+
+module "alert" {
+  source        = "./modules/alert/gcp"
+  gcp_credentials         = file("./creds.json")
+  gcp_project_id          = jsondecode(file("./creds.json")).project_id
+  gcp_region              = "us-central1"
+  load_balancer = module.load_balancer.infos # if not set or null value the alert will be ignored
+  name          = "alertRequestCount" # other type will be available in futur versions
+  combiner      = "OR" # AND
+  condition     = {
+    name               = "condition-name"
+    duration           = 60
+    comparaison        = ">" # "<"
+    threshold_value    = 10
+    alignment_period   = "300" # en seconde 
+    per_series_aligner = "ALIGN_SUM" # other aligners will be available in futur versions
+  }
+  notification  = {
+    name  = "email-notifier"
+    type  = "email" # other types will be available in futur versions
+    email = "islem.meghnine06@gmail.com" # email to rcv notification
   }
 }
 
