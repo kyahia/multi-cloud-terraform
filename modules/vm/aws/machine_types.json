@@ -1,0 +1,101 @@
+{
+    "machine_types": [
+        {
+            "cpu": 1,
+            "ram": 2,
+            "architecture": "x86_64",
+            "instance_type": "t2.small"
+        },
+        {
+            "cpu": 2,
+            "ram": 4,
+            "architecture": "x86_64",
+            "instance_type": "c5.large"
+        },
+        {
+            "cpu": 2,
+            "ram": 8,
+            "architecture": "x86_64",
+            "instance_type": "m4.large"
+        },
+        {
+            "cpu": 4,
+            "ram": 8,
+            "architecture": "x86_64",
+            "instance_type": "c5.xlarge"
+        },
+        {
+            "cpu": 4,
+            "ram": 16,
+            "architecture": "x86_64",
+            "instance_type": "d3en.xlarge"
+        },
+        {
+            "cpu": 8,
+            "ram": 16,
+            "architecture": "x86_64",
+            "instance_type": "c5.2xlarge"
+        },
+        {
+            "cpu": 8,
+            "ram": 32,
+            "architecture": "x86_64",
+            "instance_type": "d3en.2xlarge"
+        },
+        {
+            "cpu": 2,
+            "ram": 4,
+            "architecture": "arm",
+            "instance_type": "a1.large"
+        },
+        {
+            "cpu": 2,
+            "ram": 8,
+            "architecture": "arm",
+            "instance_type": "im4gn.large"
+        },
+        {
+            "cpu": 4,
+            "ram": 8,
+            "architecture": "arm",
+            "instance_type": "a1.xlarge"
+        },
+        {
+            "cpu": 4,
+            "ram": 16,
+            "architecture": "arm",
+            "instance_type": "im4gn.xlarge"
+        },
+        {
+            "cpu": 8,
+            "ram": 16,
+            "architecture": "arm",
+            "instance_type": "a1.2xlarge"
+        },
+        {
+            "cpu": 8,
+            "ram": 32,
+            "architecture": "arm",
+            "instance_type": "im4gn.2xlarge"
+        }
+    ],
+
+    "image_names": {
+        "ubuntu" : {
+            "18.04": "ubuntu*18.04*",
+            "20.04": "ubuntu*20.04*",
+            "22.04": "ubuntu*22.04*"
+            },
+        "fedora" :{
+                "34": "Fedora*34*"
+            },
+        "centos":{
+                "7": "CentOS*7*",
+                "amazon": "amzn2*"
+            },
+        "windows": {
+                "2022": "Windows*2022*"
+            }
+
+    }
+}
