@@ -1,5 +1,5 @@
 locals {
-  private_exists = length(azurerm_subnet.private_subnets)
+  private_exists = length(local.private_subnets)
 }
 
 # PRIVITIZE SERVERS SUBNET
@@ -11,7 +11,7 @@ resource "azurerm_network_security_group" "prv_nsg" {
 }
 
 resource "azurerm_subnet_network_security_group_association" "subnet_nsg_association" {
-  for_each                  = { for k, v in var.subnets : k => v if v.type == "private" }
-  subnet_id                 = azurerm_subnet.private_subnets[each.key].id
+  for_each                  = local.private_subnets
+  subnet_id                 = local.private_subnets[each.key].id
   network_security_group_id = azurerm_network_security_group.prv_nsg[0].id
 }

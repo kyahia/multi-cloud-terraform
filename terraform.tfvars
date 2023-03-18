@@ -1,11 +1,7 @@
-azure_subscription_id = "4cedc5dd-e3ad-468d-bf66-32e31bdb9148"
-azure_resource_group  = "1-b215840b-playground-sandbox"
+azure_subscription_id = ""
+azure_resource_group  = ""
 
-# gcp_credentials_path = "./gcp_credentials.json"
+gcp_credentials_path = "./gcp_credentials.json"
 
-aws_access_key = "AKIATFOLR6NMGIO5XTMD"
-aws_secret_key = "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"
-
-# enable_azure = true
-# enable_aws   = false
-# enable_gcp   = true
+aws_access_key = ""
+aws_secret_key = ""
