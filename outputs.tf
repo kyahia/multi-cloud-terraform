@@ -36,3 +36,7 @@ output "islem" {
   value = module.load_balancer.vm
   sensitive = true
 }
+
+output "os" {
+  value = module.vm.os
+}

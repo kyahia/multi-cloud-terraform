@@ -63,7 +63,9 @@ module "vm" {
       ram             = 4 # amount of random access memory
       cores           = 2 # cores of cpu
       arch            = "x86"
-      os_version      = "18" # operating system version
+      os              = "debian" # operating system version
+      os_version      = "11"
+      os_arch         = "arm64" 
       script          = "${file("./script.sh")}" # script to provision the machine
     },
     vm2 = {
@@ -78,7 +80,9 @@ module "vm" {
       ram             = 4 # amount of random access memory
       cores           = 2 # cores of cpu
       arch            = "x86"
-      os_version      = "18" # operating system version
+      os              = "ubuntu" # operating system version
+      os_version      = "22"
+      os_arch         = "arm64" 
       script          = "${file("./script.sh")}" # script to provision the machine
     },
     vm3 = {
@@ -93,7 +97,9 @@ module "vm" {
       ram             = 4 # amount of random access memory
       cores           = 2 # cores of cpu
       arch            = "x86"
-      os_version      = "18" # operating system version
+      os              = "ubuntu" # operating system default debian-cloud/debian-10
+      os_version      = "22" # 18 20 22
+      os_arch         = "arm64"  
       script          = "${file("./script.sh")}" # script to provision the machine
     },
   }
