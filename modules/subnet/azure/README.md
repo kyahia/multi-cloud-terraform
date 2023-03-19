@@ -40,6 +40,7 @@ In the root directory :
 | resource_group_name | resource group where the virtual network is to be created if azure is specified in the providers list | `string` |  | yes(if azure is listed) |
 | location | region for AZURE | `string` |  | yes(if AZURE is listed) |
 | virtual_network_name | The name of the parent VPC | `string` |  | yes |
+| previous_subnets | list of previous subnets | `list` |  | yes(if subnets already exist & cidr_blocks not specified) |
 | subnets | map of the resources to be created | `map(map)` |  | yes |
 
 ## Arguments for "subnetworks"

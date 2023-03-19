@@ -23,7 +23,7 @@ data "aws_ami" "vimages" {
   }
   filter {
     name   = "architecture"
-    values = [var.cpu_architecture]
+    values = [var.architecture]
   }
   filter {
     name   = "virtualization-type"
@@ -38,8 +38,8 @@ resource "aws_instance" "vms" {
   ami                         = data.aws_ami.vimages[each.key].id 
   subnet_id                   = var.subnet_id
   vpc_security_group_ids      = [aws_security_group.sg_aws.id]
-  instance_type               = try(each.value.configuration, "auto") == "manual" ? [for machine_type, cpu_ram in local.client_architecture_vms : machine_type if cpu_ram == "${each.value.cpu_cores}_${each.value.vm_ram}"][0] : ""
-  associate_public_ip_address = each.value.public
+  instance_type               = try(each.value.configuration, "auto") == "auto" ? "t2.small" : [for machine_type, cpu_ram in local.client_architecture_vms : machine_type if cpu_ram == "${each.value.cpu_cores}_${each.value.vm_ram}"][0]
+  associate_public_ip_address = each.value.public_ip
   user_data                   = try(each.value.user_data, "")
   key_name                    = var.ssh_key != "" ? var.ssh_key : null
   tags = {

@@ -54,7 +54,7 @@ In the root directory :
 |------|-------------|------|---------|:--------:|
 | azure_subscription_id | credential for azure | `string` | `""` | yes |
 | resource_group_name | resource group where the virtual network is to be created | `string` |  | yes |
-|                                                                                        location | region for AZURE | `string` |  | yes |
+| location | region for AZURE | `string` |  | yes |
 | vms | map of the resources to be created | `map(map)` |  | yes |
 
 ## Arguments for "vms"

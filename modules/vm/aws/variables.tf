@@ -14,12 +14,8 @@ variable "subnet_id" {
   type = string
 }
 variable "open_ports" {
-  type = map(
-            object({
-              port_number=number
-              })
-              )
-  default = {}
+  type = list
+  default = []
 }
 variable "cpu_architecture" {
   type = string
@@ -32,4 +28,8 @@ variable "ssh_key" {
 
 variable "configuration" {
   default = "auto"
+}
+
+variable "vms" {
+  
 }

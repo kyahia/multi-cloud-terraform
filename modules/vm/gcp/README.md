@@ -6,45 +6,27 @@ In the root directory :
 
     module "CUSTOM_NAME" : {
         # path to module
-        source = "./modules/vm/azure"
-        
-        # AZURE credentials
-        azure_subscription_id = YOUR_ID
-        resource_group_name = YOUR_RESOURCE_GROUP
-
-        # resource properties
-        location = "South Central US"
-
-        # map of vms to create
+        source = "./modules/vm/gcp"
+        gcp_credentials         = file("./creds.json")
+        gcp_project_id          = jsondecode(file("./creds.json")).project_id
+        gcp_region              = "us-central1"
+        zone                    = "us-central1-a"
+        vpc_name                = module.vpc_gcp.vpc["vpc1"].name
         vms = {
             vm1 = {
-                name      = "Vm1"
-                subnet    = SUBNET_ID
-                public_ip    = "enable"
-                openports = ["80", "22", "443"]
-                username  = "admin"
-                password  = "Admin.2023"
-                ssh_key   = file("./id_rsa.pub")
-
-                configuration = "manual"
-                ram     = "8"
-                cores   = "2"
-                os      = "Ubuntu"
-                version = "18"
-                architechture    = "X86"
-                custom_data = filebase64("./script.sh")
-            },
-
-            vm2 = {
-                name      = "Vm2"
-                subnet    = SUBNET_ID
-                pubic_ip    = "disable" #enable | disable
-                openports = ["80", "22"]
-                username  = "admin"
-                password  = "admin.2023"
-
-                configuration = "auto"
-                custom_data = filebase64("./script.sh")
+                name            = "vm-private-1" # vm name must include private or public , TODO: we need to prevent this
+                subnet          = module.subnet_gcp.private_subnets["scd"].self_link # subnet where the vm should be 
+                public_ip       = false
+                open_ports      = ["80","22"] # allowed open ports 
+                ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
+                username        = "user"
+                ram             = 4 # amount of random access memory
+                cores           = 2 # cores of cpu
+                arch            = "x86"
+                os              = "debian" # operating system version
+                os_version      = "11"
+                arch            = "arm" 
+                custom_data          = "${file("./script.sh")}" # script to provision the machine
             }
         }
     }
@@ -52,9 +34,9 @@ In the root directory :
 # Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| azure_subscription_id | credential for azure | `string` | `""` | yes |
-| resource_group_name | resource group where the virtual network is to be created | `string` |  | yes |
-|                                                                                        location | region for AZURE | `string` |  | yes |
+| gcp_credentials | credential for gcp | `string` | `""` | yes |
+| gcp_project_id | project ID where the virtual network is to be created | `string` |  | yes |
+| gcp_region | region for GCP | `string` |  | yes |
 | vms | map of the resources to be created | `map(map)` |  | yes |
 
 ## Arguments for "vms"
@@ -63,13 +45,12 @@ In the root directory :
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | name | The name of the resource (prefferably unique to avoid cloud providers erros)  | `string` | | yes |
-| subnet | subnet ID where the resource is to be created  | `string` | | yes |
+| subnet | subnet self-link where the resource is to be created  | `string` | | yes |
 | public_ip | whether the instance should have a public IP. Allowed value : "enable", "disable"  | `string` | | yes |
-| openports | the list of ports to expose externally  | `list(string)` | | yes |
+| open_ports | the list of ports to expose externally  | `list(string)` | | yes |
 | username | the virtual machine's username  | `string` | | yes |
-| password | the virtual machine's password  | `string` | | yes |
 | ssh_key | the ssh public key  | `string` | | yes |
-| configuration | wheter you need a default hardware parameter or set it manually. Allowed values : "auto", "manual"  | `string` | | no |
+| configuration | wheter you need a default hardware parameter or set it manually. Allowed values : "auto", "manual"  | `string` | "auto" | no |
 | ram | size of the machine's RAM in GB  | `string` | | yes(if configuration is "manual") |
 | cores | number of machine's CPU cores  | `string` | | yes(if configuration is "manual") |
 | os | Operating system of the machine  | `string` | | yes(if configuration is "manual") |

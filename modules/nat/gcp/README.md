@@ -1,6 +1,7 @@
 # Terrafrom Network Address Translator module
 This module allows creating a NAT in the cloud provider GCP. The resulting resources are :
-- 
+- a NAT associated with the list of subnets
+- a router to associate with the NAT
 
 # Usage (code snippet)
 In the root directory : 

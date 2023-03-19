@@ -6,7 +6,7 @@ provider "azurerm" {
 
 locals {
   subnet_keys    = [for k, v in var.subnets : k]
-  starting_index = length(flatten(var.previous_subnets))
+  starting_index = length(var.previous_subnets)
 }
 
 
@@ -19,6 +19,6 @@ resource "azurerm_subnet" "subnets" {
 }
 
 locals {
-  private_subnet = { for k, v in var.subnets : k => azurerm_subnet.subnets[k] if v.type == "private" }
-  public_subnet  = { for k, v in var.subnets : k => azurerm_subnet.subnets[k] if v.type == "public" }
+  private_subnets = { for k, v in var.subnets : k => azurerm_subnet.subnets[k] if v.type == "private" }
+  public_subnets  = { for k, v in var.subnets : k => azurerm_subnet.subnets[k] if v.type == "public" }
 }

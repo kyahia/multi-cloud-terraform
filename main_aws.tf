@@ -64,13 +64,16 @@ module "compute_vms" {
   aws_secret_key   = var.aws_secret_key
   vpc_id           = module.vpc_aws.vpc_id
   subnet_id        = module.subnet_aws.private_subnet_id
-  available_ports  = { allow_http = { port_number = 80 }, allow_ssh = { port_number = 22 } }
-  os_name          = "ubuntu"
-  os_version       = "18.04"
-  cpu_architecture = "x86_64"
-  cpu_cores        = 1
-  vm_ram           = 2
-  vm_number        = 2
+  vms = {
+    vm1 = {
+      available_ports  = { allow_http = { port_number = 80 }, allow_ssh = { port_number = 22 } }
+      os_name          = "ubuntu"
+      os_version       = "18.04"
+      cpu_architecture = "x86_64"
+      cpu_cores        = 1
+      vm_ram           = 2
+    }
+  }
 }
 
 module "load_balancer" {

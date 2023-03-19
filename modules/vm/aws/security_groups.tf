@@ -3,19 +3,19 @@ resource "aws_security_group" "sg_aws" {
   name   = "sg"
 
   dynamic "ingress" {
-    for_each = var.open_ports
+    for_each = toset(var.open_ports)
     content {
-      from_port   = ingress.value["port_number"]
-      to_port     = ingress.value["port_number"]
+      from_port   = ingress.value
+      to_port     = ingress.value
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
     }
   }
   dynamic "egress" {
-    for_each = var.available_ports
+    for_each = toset(var.open_ports)
     content {
-      from_port   = egress.value["port_number"]
-      to_port     = egress.value["port_number"]
+      from_port   = egress.value
+      to_port     = egress.value
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
     }

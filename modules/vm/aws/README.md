@@ -45,8 +45,8 @@ In the root directory :
 | aws_region | region for AWS | `string` |  | yes |
 | subnet_id | subnet ID where the vms is to be created  | `string` | | yes |
 | configuration | wheter you need a default hardware parameter or set it manually. Allowed values : "auto", "manual"  | `string` | "auto" | no |
-| cpu_architechture | System architechture which impacts the operating system image & the machine's hardware. Allowed values : "x86_64", "arm"  | `string` | "x86_64" | no |
-| open_ports | the list of ports to expose externally  | `list(string)` | | no |
+| architechture | System architechture which impacts the operating system image & the machine's hardware. Allowed values : "x86_64", "arm"  | `string` | "x86_64" | no |
+| open_ports | the list of ports to expose externally  | `list(number)` | | no |
 | vms | map of the resources to be created | `map(map)` |  | yes |
 
 ## Arguments for "vms"
@@ -55,7 +55,7 @@ In the root directory :
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | name | The name of the resource (prefferably unique to avoid cloud providers erros)  | `string` | | yes |
-| public_ip | whether the instance should have a public IP. Allowed value : true, false  | boolean | | yes |
+| public_ip | whether the instance should have a public IP. Allowed value : true, false  | `boolean` | | yes |
 | ram | size of the machine's RAM in GB  | `string` | | yes(if configuration is "manual") |
 | cpu_cores | number of machine's CPU cores  | `string` | | yes(if configuration is "manual") |
 | os | Operating system of the machine  | `string` | | yes(if configuration is "manual") |

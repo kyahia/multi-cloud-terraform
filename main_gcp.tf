@@ -209,7 +209,7 @@ module "vm" {
   vms = {
     vm1 = {
       name            = "vm-private-1" # vm name must include private or public , TODO: we need to prevent this
-      subnet          = module.subnet_gcp.private_subnets["scd"] # subnet where the vm should be 
+      subnet          = module.subnet_gcp.private_subnets["scd"].self_link # subnet where the vm should be 
       public_ip       = false
       description     = "A simple vm"
       disable_fw_rule = false
@@ -226,7 +226,7 @@ module "vm" {
     },
     vm2 = {
       name            = "vm-private-2" # vm name
-      subnet          = module.subnet_gcp.private_subnets["scd"] # subnet where the vm should be 
+      subnet          = module.subnet_gcp.private_subnets["scd"].self_link # subnet where the vm should be 
       public_ip       = false
       description     = "A simple vm"
       disable_fw_rule = false
@@ -243,7 +243,7 @@ module "vm" {
     },
     vm3 = {
       name            = "vm-public-1" # vm name
-      subnet          = module.subnet_gcp.public_subnets["first"] # subnet where the vm should be 
+      subnet          = module.subnet_gcp.public_subnets["first"].self_link # subnet where the vm should be 
       public_ip       = true
       description     = "A simple vm"
       disable_fw_rule = false
