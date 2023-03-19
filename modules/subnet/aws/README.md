@@ -43,8 +43,7 @@ In the root directory :
 | aws_secret_key | credential for aws if specified in the providers list | `string` |  | yes |
 | aws_region | region for AWS | `string` |  | yes |
 | vpc_id | ID of the parent VPC | `string` |  | yes |
-| cidr_mode | whether you let the module handle IP range or you want to specify them manually. Allowed value are : "manual" or "auto" | `string` | "auto" | no |
-| internet_gateway_id | ID of an Internet Gateway already existing in the parent VPC | `string` | | no |
+| internet_gateway_id | ID of an Internet Gateway already existing in the parent VPC. If not specified, one will be created in case there is a public subnet in subnets map | `string` | | no |
 | subnets | map of the resources to be created | `map(map)` |  | yes |
 
 ## Arguments for "subnetworks"
@@ -54,7 +53,7 @@ In the root directory :
 |------|-------------|------|---------|:--------:|
 | name | The name of the resource (prefferably unique to avoid cloud providers errors)  | `string` | | yes |
 | type | Whether the resources inside the subnet have direct access to internet. Allowed value are : "public" or "private"  | `string` | "public" | no |
-| cidr_block  | The name of the resource (prefferably unique to avoid cloud providers erros)  | `string` | | yes(if cidr_mode is set to manual) |
+| cidr_block  | The name of the resource (prefferably unique to avoid cloud providers erros)  | `string` | "10.0.[0-255].0/24" | no |
 | availability_zone  | The availability zone of the subnet  | `string` | | yes |
 
 # Ouputs

@@ -15,7 +15,7 @@ resource "azurerm_subnet" "subnets" {
   name                 = each.value.name
   resource_group_name  = var.resource_group_name
   virtual_network_name = var.virtual_network_name
-  address_prefixes     = [try(each.value.cidr_block, cidrsubnet("10.0.0.0/16", 8, index(local.subnet_keys, key) + local.starting_index))]
+  address_prefixes     = [try(each.value.cidr_block, cidrsubnet("10.0.0.0/16", 8, index(local.subnet_keys, each.key) + local.starting_index))]
 }
 
 locals {

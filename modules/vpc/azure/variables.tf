@@ -7,9 +7,3 @@ variable "azure_subscription_id" {
 
 variable "azure_resource_group" {
 }
-
-variable "cidr_mode" {
-  type = string
-  default = "auto"
-}
-

@@ -12,9 +12,9 @@ locals {
 
 
 resource "aws_subnet" "subnets" {
-  vpc_id            = var.vpc_id
   for_each          = var.subnets
-  cidr_block        = cidrsubnet("10.0.0.0/16", 8, index(local.subnet_keys, each.key) + local.starting_index)
+  vpc_id            = var.vpc_id
+  cidr_block        = try(each.value.cidr_block, cidrsubnet("10.0.0.0/16", 8, index(local.subnet_keys, each.key) + local.starting_index))
   availability_zone = each.value.availability_zone
   tags = {
     Name = each.value.name

@@ -1,19 +1,19 @@
 # Terrafrom Private Network module
-This module allows creating VPC "Virtual Private Cloud networks" in the cloud providers AZURE
+This module allows creating VPC "Virtual Private Cloud networks" in the cloud providers GCP
 
 # Usage (code snippet)
 In the root directory : 
 
     module "CUSTOM_NAME" : {
         # path to module
-        source = "./modules/vpc/azure"
+        source = "./modules/vpc/gcp"
         
-        # AZURE credentials
-        azure_subscription_id = YOUR_ID
-        resource_group_name = YOUR_RESOURCE_GROUP
-
+        # GCP credentials
+        gcp_credentials = file("PATH_TO_CREDENTIALS_JSON")
+        gcp_project_id  = YOUR_PROJECT_ID
+        
         # resource properties
-        azure_location = "South Central US"
+        gcp_region      = "us-central1"
 
         # map of vpc to create
         vpcs = {
@@ -29,10 +29,9 @@ In the root directory :
 # Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| azure_subscription_id | credential for azure | `string` | `""` | yes |
-| resource_group_name | resource group where the virtual network is to be created | `string` |  | yes |
-| azure_location | region for AZURE | `string` |  | yes |
-| cidr_mode | The cidr mode of the virtual nertwork. Allowed values : "auto", "manual"  | `string` | "auto" | yes |
+| gcp_credentials | credential for gcp | `string` | `""` | yes |
+| gcp_project_id | project ID where the virtual network is to be created | `string` |  | yes |
+| gcp_region | region for GCP | `string` |  | yes |
 | vpcs | map of the resources to be created | `map(map)` |  | yes |
 
 
@@ -42,8 +41,6 @@ In the root directory :
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | name | The name of the resource (prefferably unique to avoid cloud providers erros)  | `string` | | yes |
-| location | The location of the resource  | `string` | | yes |
-| cidr_block | The IP range of the resource | `string` | "10.0.0.0/16" | yes |
 
 
 

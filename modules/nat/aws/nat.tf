@@ -6,14 +6,14 @@ provider "aws" {
 
 resource "aws_eip" "elastic_ip" {
   count = var.nat_id == "" ? 1 : 0
-  vpc = true
+  vpc   = true
   tags = {
     Name = "elastic-nat-gateway-ip-adress"
   }
 }
 
 resource "aws_nat_gateway" "nat" {
-  count = var.nat_id == "" ? 1 : 0
+  count         = var.nat_id == "" ? 1 : 0
   allocation_id = aws_eip.elastic_ip[0].id
   subnet_id     = var.public_subnet_id
   tags = {

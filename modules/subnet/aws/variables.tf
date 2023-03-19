@@ -1,9 +1,3 @@
-variable "subnets" {
-    type = map(any)
-}
-variable "vpc_id" {
-    type = string
-}
 variable "aws_region" {
   type    = string
   default = "us-east-1"
@@ -19,6 +13,12 @@ variable "internet_gateway_id" {
   default = ""
 }
 
-variable "cidr_mode" {
-  default = "auto"
+variable "vpc_id" {
+    type = string
+}
+variable "subnets" {
+    type = map(any)
+}
+variable "previous_subnets" {
+    default = []
 }

@@ -1,5 +1,8 @@
 # Terrafrom Network Address Translator module
-This module allows creating/editing a NAT in the cloud provider AWS
+This module allows creating/editing a NAT in the cloud provider AWS. The resulting resources are:
+- A NAT if no nat_id is entred in inputs
+- An elastic IP to associate with the created NAT
+- A route table to associate the private subnets with the NAT
 
 # Usage (code snippet)
 In the root directory : 
@@ -31,9 +34,10 @@ In the root directory :
 | aws_region | region for AWS | `string` |  | yes |
 | name | The name of the resource (prefferably unique to avoid cloud providers errors)  | `string` | | yes |
 | nat_id | the id of a NAT already existing that you want to edit the subnets association list | `string` | | no |
-| subnets | map of the subnetworks ids to associate with the NAT | `map(string)` |  | yes |
+| public_subnet_id | public subnet where the NAT is located| `string` |  | yes |
+| private_subnet_ids | map of the private subnetworks ids to associate with the NAT | `map(string)` |  | yes |
 
 # Ouputs
 | Name | Type | Description |
 |------|-------------|:--------:|
-| nat_id | `string` | ID of the NAT created/edited |
+| nat | `string` | the NAT resource created/edited |

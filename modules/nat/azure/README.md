@@ -1,5 +1,7 @@
 # Terrafrom Network Address Translator module
-This module allows creating/editing a NAT in the cloud provider AZURE
+This module allows creating/editing a NAT in the cloud provider AZURE. The resulting resources are:
+- A NAT if no nat_id is entred in inputs
+- A public IP to associate with the created NAT
 
 # Usage (code snippet)
 In the root directory : 

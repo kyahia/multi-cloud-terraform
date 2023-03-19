@@ -1,40 +1,39 @@
 # Terrafrom Network Address Translator module
-This module allows creating/editing a NAT in the cloud provider AZURE
+This module allows creating a NAT in the cloud provider GCP. The resulting resources are :
+- 
 
 # Usage (code snippet)
 In the root directory : 
 
     module "CUSTOM_NAME" : {
         # path to module
-        source = "./modules/nat/azure"
+        source = "./modules/nat/gcp"
         
-        # AZURE credentials
-        azure_subscription_id = YOUR_ID
-        resource_group_name = YOUR_RESOURCE_GROUP
-
+        # GCP credentials
+        gcp_credentials = file("PATH_TO_CREDENTIALS_JSON")
+        gcp_project_id  = YOUR_PROJECT_ID
+        
         # resource properties
-        location = "South Central US"
-        name = CUSTOM_NAME
+        gcp_region      = "us-central1"
 
         # map of subnets to create
         subnets = {
             sub1_id = SUBNET1_ID,
             sub2_id = SUBNET2_ID
         }
-}
+    }
 
 # Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| azure_subscription_id | credential for azure if specified in the providers list | `string` | `""` | yes |
-| resource_group_name | resource group where the virtual network is to be created if azure is specified in the providers list | `string` |  | yes |
-| location | region for AZURE | `string` |  | yes |
+| gcp_credentials | credential for gcp | `string` | `""` | yes |
+| gcp_project_id | project ID where the virtual network is to be created | `string` |  | yes |
+| gcp_region | region for GCP | `string` |  | yes |
 | name | The name of the resource (prefferably unique to avoid cloud providers errors)  | `string` | | yes |
-| nat_id | the id of a NAT already existing that you want to edit the subnets association list | `string` | | no |
 | subnets | map of the subnetworks ids to associate with the NAT | `map(string)` |  | yes |
 
 # Ouputs
 | Name | Type | Description |
 |------|-------------|:--------:|
-| nat_id | `string` | ID of the NAT created/edited |
+| nat_id | `string` | ID of the NAT created |
 | nat | map | map of created resource with all attributes |

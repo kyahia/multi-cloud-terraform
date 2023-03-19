@@ -32,7 +32,6 @@ In the root directory :
 | azure_subscription_id | credential for azure | `string` | `""` | yes |
 | resource_group_name | resource group where the virtual network is to be created | `string` |  | yes |
 | azure_location | region for AZURE | `string` |  | yes |
-| cidr_mode | The cidr mode of the virtual nertwork. Allowed values : "auto", "manual"  | `string` | "auto" | yes |
 | vpcs | map of the resources to be created | `map(map)` |  | yes |
 
 
@@ -43,7 +42,7 @@ In the root directory :
 |------|-------------|------|---------|:--------:|
 | name | The name of the resource (prefferably unique to avoid cloud providers erros)  | `string` | | yes |
 | location | The location of the resource  | `string` | | yes |
-| cidr_block | The IP range of the resource | `string` | "10.0.0.0/16" | yes |
+| cidr_block | The IP range of the resource | `string` | "10.0.0.0/16" | no |
 
 
 

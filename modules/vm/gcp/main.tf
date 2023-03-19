@@ -99,6 +99,19 @@ locals {
     }
 }
 
+# json file acting like a db to store available OS
+
+locals {
+    oss      = jsondecode(file("./images.json"))
+    user     = {for key,s in var.vms: key => "${s.os}${s.os_version}-${s.arch}"}
+    filtered = {for user_key,user_os in local.user: user_key => {
+        for key_os, os in local.oss: "os_name" => os.selfLink if lower(key_os) == lower(user_os)
+    }} 
+    /* filtred = {for key_os,os in local.oss: key_os => {
+        for user_os_key, user_os in var.vms
+    }} */
+}
+
 resource "google_compute_instance" "vms" {
     for_each     = var.vms 
     name         = each.value.name  
@@ -108,7 +121,7 @@ resource "google_compute_instance" "vms" {
 
     boot_disk {    
         initialize_params {      
-            image = "debian-cloud/debian-10"  
+            image = try(local.filtered[each.key].os_name, "ubuntu-os-cloud/ubuntu-2004-lts")
         }  
     }  
     network_interface {    

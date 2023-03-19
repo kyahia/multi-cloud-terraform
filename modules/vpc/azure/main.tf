@@ -11,7 +11,7 @@ resource "azurerm_virtual_network" "Vnet" {
   resource_group_name = var.azure_resource_group
   name                = each.value.name
   location            = each.value.location
-  address_space       = var.cidr_mode == "auto" ? ["10.0.0.0/16"] : [try(each.value.cidr_block, "10.0.0.0/16")]
+  address_space       = [try(each.value.cidr_block, "10.0.0.0/16")]
 }
 
 

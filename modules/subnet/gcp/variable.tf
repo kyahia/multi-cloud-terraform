@@ -1,11 +1,3 @@
-variable "subnets" {
-  type = map(any)
-}
-
-variable "vpc_name" {
-  type = string
-}
-
 variable "gcp_credentials" {
 }
 
@@ -14,9 +6,12 @@ variable "gcp_project_id" {
 
 variable "gcp_region" {
 }
+variable "vpc_name" {
+  type = string
+}
 
-variable "cidr_mode" {
-  default = "manual"
+variable "subnets" {
+  type = map(any)
 }
 
 variable "previous_subnets" {

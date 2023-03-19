@@ -4,7 +4,7 @@ locals {
 
 # PRIVITIZE SERVERS SUBNET
 resource "azurerm_network_security_group" "prv_nsg" {
-  count = local.private_exists == 0 ? 0 : 1
+  count               = local.private_exists == 0 ? 0 : 1
   name                = "prv_nsg"
   resource_group_name = var.resource_group_name
   location            = var.location

@@ -1,5 +1,5 @@
 # Terrafrom Subnetwork module
-This module allows creating SUBNETWORKS in the cloud providers AZURE
+This module allows creating SUBNETWORKS in the cloud providers GCP
 
 # Usage (code snippet)
 In the root directory : 
@@ -8,14 +8,12 @@ In the root directory :
         # path to module
         source = "./modules/subnet/azure"
         
-        # AZURE credentials
-        azure_subscription_id = YOUR_ID
-        resource_group_name = YOUR_RESOURCE_GROUP
-
+        # GCP credentials
+        gcp_credentials = file("PATH_TO_CREDENTIALS_JSON")
+        gcp_project_id  = YOUR_PROJECT_ID
+        
         # resource properties
-        location = "South Central US"
-        virtual_network_name = VPC_ID
-        cidr_mode = "auto"
+        gcp_region      = "us-central1"
 
         # map of subnets to create
         subnets = {
@@ -28,15 +26,14 @@ In the root directory :
                 type = "public"
             }
         }
-}
+    }
 
 # Inputs
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| azure_subscription_id | credential for azure if specified in the providers list | `string` | `""` | yes(if azure is listed) |
-| resource_group_name | resource group where the virtual network is to be created if azure is specified in the providers list | `string` |  | yes(if azure is listed) |
-| location | region for AZURE | `string` |  | yes(if AZURE is listed) |
-| virtual_network_name | The name of the parent VPC | `string` |  | yes |
+| gcp_credentials | credential for gcp | `string` | `""` | yes |
+| gcp_project_id | project ID where the virtual network is to be created | `string` |  | yes |
+| gcp_region | region for GCP | `string` |  | yes |
 | cidr_mode | whether you let the module handle IP range or you want to specify them manually. Allowed value are : "manual" or "auto" | `string` | "auto" | no |
 | subnets | map of the resources to be created | `map(map)` |  | yes |
 
