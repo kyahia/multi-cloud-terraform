@@ -17,7 +17,7 @@ resource "google_compute_router_nat" "nat_gateway" {
   dynamic "subnetwork" {
     for_each = var.subnets
     content {
-      name                    = subnetwork.value.name
+      name                    = subnetwork.value
       source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
     }
   }

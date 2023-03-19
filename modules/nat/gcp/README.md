@@ -31,7 +31,7 @@ In the root directory :
 | gcp_project_id | project ID where the virtual network is to be created | `string` |  | yes |
 | gcp_region | region for GCP | `string` |  | yes |
 | name | The name of the resource (prefferably unique to avoid cloud providers errors)  | `string` | | yes |
-| subnets | map of the subnetworks ids to associate with the NAT | `map(string)` |  | yes |
+| subnets | list of the subnetworks self-links to associate with the NAT | `map(string)` |  | yes |
 
 # Ouputs
 | Name | Type | Description |

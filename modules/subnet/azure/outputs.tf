@@ -9,5 +9,8 @@ output "subnets" {
   value = azurerm_subnet.subnets
 }
 
+output "security_group_id" {
+  value = try(azurerm_network_security_group.prv_nsg[0].id)
+}
 
 

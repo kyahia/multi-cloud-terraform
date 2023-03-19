@@ -21,7 +21,7 @@ locals {
 # json file acting like a db to store available OS
 
 locals {
-    oss      = jsondecode(file("./images.json"))
+    oss      = jsondecode(file("./modules/vm/gcp/images.json"))
     user     = {for key,s in var.vms: key => "${s.os}${s.os_version}-${s.arch}"}
     filtered = {for user_key,user_os in local.user: user_key => {
         for key_os, os in local.oss: "os_name" => os.selfLink if lower(key_os) == lower(user_os)
@@ -34,9 +34,10 @@ locals {
 resource "google_compute_instance" "vms" {
     for_each     = var.vms 
     name         = each.value.name  
-    machine_type = try(values(local.selected[each.key])[0],"e2-standart-2")
+    machine_type = try(values(local.selected[each.key])[0],"e2-standard-2")
     zone = var.zone
     tags = length(each.value.open_ports) > 0 ? ["${each.value.name}-fw-auth"] : []
+    description = try(each.value.description, "")
 
     boot_disk {    
         initialize_params {      

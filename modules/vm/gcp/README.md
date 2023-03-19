@@ -1,5 +1,5 @@
 # Terrafrom Virtual Machine module
-This module allows creating a Virtual Machine in the cloud provider AZURE
+This module allows creating a Virtual Machine in the cloud provider GCP
 
 # Usage (code snippet)
 In the root directory : 
@@ -49,16 +49,15 @@ In the root directory :
 | public_ip | whether the instance should have a public IP. Allowed value : "enable", "disable"  | `string` | | yes |
 | open_ports | the list of ports to expose externally  | `list(string)` | | yes |
 | username | the virtual machine's username  | `string` | | yes |
-| ssh_key | the ssh public key  | `string` | | yes |
-| configuration | wheter you need a default hardware parameter or set it manually. Allowed values : "auto", "manual"  | `string` | "auto" | no |
-| ram | size of the machine's RAM in GB  | `string` | | yes(if configuration is "manual") |
-| cores | number of machine's CPU cores  | `string` | | yes(if configuration is "manual") |
-| os | Operating system of the machine  | `string` | | yes(if configuration is "manual") |
-| version | Version of the operating system  | `string` | | yes(if configuration is "manual") |
-| arch | System architechture which impacts the operating system image & the machine's hardware. Allowed values : "X86", "arm"  | `string` | | yes(if configuration is "manual") |
+| ssh_key | the ssh public key  | `string` | | no |
+| ram | size of the machine's RAM in GB  | `string` | | yes |
+| cores | number of machine's CPU cores  | `string` | | yes |
+| os | Operating system of the machine  | `string` | | yes |
+| version | Version of the operating system  | `string` | | yes |
+| arch | System architechture which impacts the operating system image & the machine's hardware. Allowed values : "X86", "arm64"  | `string` | | yes |
 | custom_data | script ran at machine initial startup  | `string` | | yes |
 
 # Outputs
 | Name | Type | Description |
 |------|-------------|:--------:|
-| vms | map(map) | map of created resources with all attributes accessible including private & public IPs |
+| vms | map(map) | map of created resources with all attributes accessible |

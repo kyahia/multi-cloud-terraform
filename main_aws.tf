@@ -1,3 +1,5 @@
+/*
+
 module "vpc_aws" {
   source         = "./modules/vpc/aws"
   aws_region     = var.aws_region
@@ -95,3 +97,5 @@ module "alert" {
   aws_secret_key = var.aws_secret_key
   lb_name        = module.load_balancer.lb.name
 }
+
+*/

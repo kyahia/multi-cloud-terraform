@@ -15,6 +15,12 @@ variable "vpc_name" {
 }
 
 variable "subnets" {
-  type = map(any)
-  default = {}
+  type = list
+  default = []
 }
+
+
+variable "nat_id" {
+  default = ""
+}
+

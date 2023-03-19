@@ -25,11 +25,11 @@ variable "type" {
 variable "target_vms" {
 }
 
-variable "bind_port" {
+variable "port" {
     type = string
 }
 
-variable "bind_port_name" {
+variable "port_name" {
     type = string
 }
 
@@ -42,11 +42,8 @@ variable "health_check" {
     default = null
 }
 
-variable "description" {
-  
-}
 
-variable "exposure" {
+variable "scheme" {
   
 }
 

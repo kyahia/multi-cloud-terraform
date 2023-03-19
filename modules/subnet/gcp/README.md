@@ -34,7 +34,7 @@ In the root directory :
 | gcp_credentials | credential for gcp | `string` | `""` | yes |
 | gcp_project_id | project ID where the virtual network is to be created | `string` |  | yes |
 | gcp_region | region for GCP | `string` |  | yes |
-| cidr_mode | whether you let the module handle IP range or you want to specify them manually. Allowed value are : "manual" or "auto" | `string` | "auto" | no |
+| security_group_id | region for GCP | `string` |  | no  |
 | subnets | map of the resources to be created | `map(map)` |  | yes |
 
 ## Arguments for "subnetworks"

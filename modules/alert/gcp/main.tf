@@ -6,7 +6,6 @@ provider "google" {
 
 
 resource "google_monitoring_notification_channel" "email" {
-  for_each = var.load_balancer != null && upper(var.load_balancer.type) == "APPLICATION" ? {c = 1} : {} # turn this to local acting like a function to reduce code
   display_name = var.notification.name
   type = var.notification.type
   labels = {
@@ -15,7 +14,6 @@ resource "google_monitoring_notification_channel" "email" {
 }
 
 resource "google_monitoring_alert_policy" "alert_policy" {
-  for_each = var.load_balancer != null && upper(var.load_balancer.type) == "APPLICATION" ? {c = 1} : {} # turn this to local acting like a function to reduce code
   display_name = var.name
   combiner = var.combiner
 
@@ -36,6 +34,6 @@ resource "google_monitoring_alert_policy" "alert_policy" {
   }
 
   notification_channels = [
-      "${google_monitoring_notification_channel.email["c"].id}",
+      "${google_monitoring_notification_channel.email.id}",
   ]
 }

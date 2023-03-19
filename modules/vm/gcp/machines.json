@@ -45,36 +45,36 @@
         "name" : "t2a-standard-1",
         "cpu"  : 2,
         "ram"  : 4,
-        "arch" : "ARM"
+        "arch" : "ARM64"
     },
     "machine9" : {
         "name" : "n1-standard-1",
         "cpu"  : 1,
         "ram"  : 2,
-        "arch" : "ARM"
+        "arch" : "ARM64"
     },
     "machine10" : {
         "name" : "t2a-standard-2",
         "cpu"  : 2,
         "ram"  : 8,
-        "arch" : "ARM"
+        "arch" : "ARM64"
     },
     "machine11" : {
         "name" : "t2a-standard-4",
         "cpu"  : 4,
         "ram"  : 4,
-        "arch" : "ARM"
+        "arch" : "ARM64"
     },
     "machine12" : {
         "name" : "t2a-standard-4",
         "cpu"  : 4,
         "ram"  : 16,
-        "arch" : "ARM"
+        "arch" : "ARM64"
     },
     "machine13" : {
         "name" : "t2a-standard-8",
         "cpu"  : 8,
         "ram"  : 16,
-        "arch" : "ARM"
+        "arch" : "ARM64"
     }
 }

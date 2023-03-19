@@ -8,11 +8,11 @@ locals {
   subnet_keys     = [ for k, v in var.subnets : k ] #first , sec
   starting_index = length(var.previous_subnets) # 0
 
-  subnets = var.cidr_mode == "manual" ? var.subnets : {
+  subnets = {
     for key in local.subnet_keys : key => {
       name       = var.subnets[key].name
       type       = var.subnets[key].type
-      cidr_block = cidrsubnet("10.0.0.0/16", 8, index(local.subnet_keys, key) + local.starting_index)
+      cidr_block = try(var.subnets[key].cidr_block, cidrsubnet("10.0.0.0/16", 8, index(local.subnet_keys, key) + local.starting_index))
     }
   }
 

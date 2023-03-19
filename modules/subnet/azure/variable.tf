@@ -15,5 +15,8 @@ variable "previous_subnets" {
     default = []
 }
 
+variable "security_group_id" {
+    default = ""
+}
 
 
