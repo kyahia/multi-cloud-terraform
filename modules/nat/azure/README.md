@@ -23,7 +23,7 @@ In the root directory :
             sub1_id = SUBNET1_ID,
             sub2_id = SUBNET2_ID
         }
-}
+    }
 
 # Inputs
 | Name | Description | Type | Default | Required |

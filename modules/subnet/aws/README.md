@@ -44,6 +44,7 @@ In the root directory :
 | aws_region | region for AWS | `string` |  | yes |
 | vpc_id | ID of the parent VPC | `string` |  | yes |
 | internet_gateway_id | ID of an Internet Gateway already existing in the parent VPC. If not specified, one will be created in case there is a public subnet in subnets map | `string` | | no |
+| previous_subnets | list of previous subnets | `list` | [] | yes(if cidr_block is not specified)  |
 | subnets | map of the resources to be created | `map(map)` |  | yes |
 
 ## Arguments for "subnetworks"
@@ -53,7 +54,7 @@ In the root directory :
 |------|-------------|------|---------|:--------:|
 | name | The name of the resource (prefferably unique to avoid cloud providers errors)  | `string` | | yes |
 | type | Whether the resources inside the subnet have direct access to internet. Allowed value are : "public" or "private"  | `string` | "public" | no |
-| cidr_block  | The name of the resource (prefferably unique to avoid cloud providers erros)  | `string` | "10.0.[0-255].0/24" | no |
+| cidr_block  | the IP range for the subnet  | `string` | "10.0.[0-255].0/24" | no |
 | availability_zone  | The availability zone of the subnet  | `string` | | yes |
 
 # Ouputs

@@ -56,10 +56,11 @@ In the root directory :
 |------|-------------|------|---------|:--------:|
 | name | The name of the resource (prefferably unique to avoid cloud providers erros)  | `string` | | yes |
 | public_ip | whether the instance should have a public IP. Allowed value : true, false  | `boolean` | | yes |
-| ram | size of the machine's RAM in GB  | `string` | | yes(if configuration is "manual") |
-| cpu_cores | number of machine's CPU cores  | `string` | | yes(if configuration is "manual") |
-| os | Operating system of the machine  | `string` | | yes(if configuration is "manual") |
-| os_version | Version of the operating system  | `string` | | yes(if configuration is "manual") |
+| ram | size of the machine's RAM in GB  | `string` | | yes |
+| cpu_cores | number of machine's CPU cores  | `string` | | yes |
+| os | Operating system of the machine  | `string` | | yes |
+| os_version | Version of the operating system  | `string` | | yes |
+| owners | list of OS mage owners  | `list` | | yes |
 | user_data | script ran at machine initial startup  | `string` | | no |
 
 # Outputs

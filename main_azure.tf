@@ -1,5 +1,3 @@
-/*
-
 module "vpc_azure" {
   source                = "./modules/vpc/azure"
   azure_subscription_id = var.azure_subscription_id
@@ -58,20 +56,6 @@ module "nat_azure" {
     # id2 = module.subnet_azure.public_subnets["sub3"].id
   }
 }
-
-
-#To modify nat assos it should be created before and give its id as parameter
-# module "nat_azure1" {
-#   source                = "./modules/nat/azure"
-#   azure_subscription_id = var.azure_subscription_id
-#   resource_group_name   = var.azure_resource_group
-#   location              = "South Central US"
-#   name                  = "auto-nat"
-#   nat_id = module.nat_azure.nat_id
-#   subnets = {
-#     sub1 = module.subnet_azure.private_subnets["sub2"].id
-#   }
-# }
 
 module "vm_azure" {
   source                = "./modules/vm/azure"
@@ -139,20 +123,6 @@ module "vm_azure" {
 
 }
 
-# module "load_balancer" {
-#   source                = "./modules/load_balancer/azure"
-#   resource_group_name   = var.azure_resource_group                      # required
-#   azure_subscription_id = var.azure_subscription_id                     #required
-#   type                  = "application"                                 # not required : network || application
-#   scheme                = "Internal"                                    # not required : internal || external
-#   location              = "South Central US"                            #required
-#   subnet                = module.subnet_azure.public_subnets["sub3"].id #required (empty subnet)
-#   name                  = "lb1" #required
-#   capacity              = 10   #not required
-#   ports                 = [80] #required
-#   vms                   = [module.vm_azure.vm["vm1"].private_ip_address, module.vm_azure.vm["vm3"].private_ip_address]
-# }
-
 module "load_balancer2" {
   source                = "./modules/load_balancer/azure"
   resource_group_name   = var.azure_resource_group # required
@@ -180,5 +150,3 @@ module "alert" {
 }
 
 
-
-*/

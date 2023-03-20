@@ -16,10 +16,10 @@ locals {
 data "aws_ami" "vimages" {
   for_each = var.vms
   most_recent = true
-  owners      = ["amazon", "aws-marketplace"]
+  owners      = flatten([["amazon"], try(each.value.owners, [])])
   filter {
     name   = "name"
-    values = [var.configuration == "manual" ? try(local.image_names[each.value.os_name][each.value.os_version]) : "ubuntu*18.04*"]  
+    values = [try(local.image_names[each.value.os_name][each.value.os_version], "ubuntu*18.04*")]  
   }
   filter {
     name   = "architecture"

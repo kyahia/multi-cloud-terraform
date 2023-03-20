@@ -103,7 +103,7 @@ resource "google_compute_target_pool" "target_pool_nlb" {
   for_each         = upper(var.type) == "NETWORK" ? { c = 1 } : {}
   name             = "${var.name}-target-pool-nlb"
   session_affinity = "NONE"
-  instances        = values(var.target_vms)
+  instances        = var.target_vms
   health_checks    = [google_compute_http_health_check.health_check_nlb["c"].self_link]
   depends_on = [
     google_compute_http_health_check.health_check_nlb,

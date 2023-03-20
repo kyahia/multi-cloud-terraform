@@ -74,7 +74,7 @@ In the root directory :
 | cores | number of machine's CPU cores  | `string` | | yes(if configuration is "manual") |
 | os | Operating system of the machine  | `string` | | yes(if configuration is "manual") |
 | version | Version of the operating system  | `string` | | yes(if configuration is "manual") |
-| arch | System architechture which impacts the operating system image & the machine's hardware. Allowed values : "X86", "arm"  | `string` | | yes(if configuration is "manual") |
+| arch | System architechture which impacts the operating system image & the machine's hardware. Allowed values : "X86", "ARM"  | `string` | | yes(if configuration is "manual") |
 | custom_data | script ran at machine initial startup  | `string` | | yes |
 
 # Outputs

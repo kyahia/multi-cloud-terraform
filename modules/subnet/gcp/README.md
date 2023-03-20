@@ -35,6 +35,7 @@ In the root directory :
 | gcp_project_id | project ID where the virtual network is to be created | `string` |  | yes |
 | gcp_region | region for GCP | `string` |  | yes |
 | security_group_id | region for GCP | `string` |  | no  |
+| previous_subnets | list of previous subnets | `list` | [] | yes(if cidr_block is not specified)  |
 | subnets | map of the resources to be created | `map(map)` |  | yes |
 
 ## Arguments for "subnetworks"
@@ -44,7 +45,7 @@ In the root directory :
 |------|-------------|------|---------|:--------:|
 | name | The name of the resource (prefferably unique to avoid cloud providers errors)  | `string` | | yes |
 | type | Whether the resources inside the subnet have direct access to internet. Allowed value are : "public" or "private"  | `string` | "public" | no |
-| cidr_block  | The name of the resource (prefferably unique to avoid cloud providers erros)  | `string` | | yes(if cidr_mode is set to manual) |
+| cidr_block  | the IP range for the subnet  | `string` | "10.0.[0-255].0/24" | no |
 
 # Ouputs
 | Name | Type | Description |

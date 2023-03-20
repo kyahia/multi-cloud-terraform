@@ -31,7 +31,7 @@ In the root directory :
                 type = "public"
             }
         }
-}
+    }
 
 # Inputs
 | Name | Description | Type | Default | Required |
@@ -50,7 +50,7 @@ In the root directory :
 |------|-------------|------|---------|:--------:|
 | name | The name of the resource (prefferably unique to avoid cloud providers errors)  | `string` | | yes |
 | type | Whether the resources inside the subnet have direct access to internet. Allowed value are : "public" or "private"  | `string` | "public" | no |
-| cidr_block  | The name of the resource (prefferably unique to avoid cloud providers erros)  | `string` | "10.0.[0-255].0/24" | no |
+| cidr_block  | the IP range for the subnet  | `string` | "10.0.[0-255].0/24" | no |
 
 # Ouputs
 | Name | Type | Description |

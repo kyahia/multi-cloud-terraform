@@ -19,15 +19,15 @@ module "subnet_gcp" {
   vpc_name        = module.vpc_gcp.vpc["vpc1"].name
 
   subnets = {
-    first = {
+    pub = {
       name = "subnet1"
       type = "public"
     },
-    scd = {
+    nat = {
       name = "subnet2"
       type = "private"
     },
-    thd = {
+    prv = {
       name = "subnet3"
       type = "private"
     },
@@ -39,11 +39,11 @@ module "nat_association" {
   gcp_credentials = file(var.gcp_credentials)
   gcp_project_id  = jsondecode(file(var.gcp_credentials)).project_id
   gcp_region      = "us-central1"
-  subnets         = [module.subnet_gcp.private_subnets["scd"].self_link, module.subnet_gcp.private_subnets["thd"].self_link]
+  subnets         = [module.subnet_gcp.private_subnets["nat"].self_link]
   vpc_name        = module.vpc_gcp.vpc["vpc1"].name
 }
 
-
+/*
 
 module "vm" {
   source          = "./modules/vm/gcp"
@@ -53,24 +53,24 @@ module "vm" {
   zone            = "us-central1-a"
   vpc_name        = module.vpc_gcp.vpc["vpc1"].name
   vms = {
-    # vm1 = {
-    #   name        = "vm-private-1"                                     # vm name must include private or public , TODO: we need to prevent this
-    #   subnet      = module.subnet_gcp.private_subnets["scd"].self_link # subnet where the vm should be 
-    #   public_ip   = false
-    #   description = "A simple vm"
-    #   open_ports  = ["80", "22"] # allowed open ports 
-    #   username    = "user"
-    #   ram         = 4 # amount of random access memory
-    #   cores       = 2 # cores of cpu
-    #   arch        = "arm64"
-    #   os          = "debian" # operating system version
-    #   os_version  = "11"
-    #   # ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
-    #   # script          = "${file("./script.sh")}" # script to provision the machine
-    # },
+    vm1 = {
+      name        = "vm-prv-1"                                     # vm name must include private or public , TODO: we need to prevent this
+      subnet      = module.subnet_gcp.private_subnets["prv"].self_link # subnet where the vm should be 
+      public_ip   = true
+      description = "A simple vm"
+      open_ports  = ["80", "22"] # allowed open ports 
+      username    = "user"
+      ram         = 4 # amount of random access memory
+      cores       = 2 # cores of cpu
+      arch        = "x86"
+      os          = "ubuntu" # operating system version
+      os_version  = "22"
+      # ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
+      custom_data = file("./script.sh") # script to provision the machine
+    },
     vm2 = {
-      name        = "vm-private-2"                                     # vm name
-      subnet      = module.subnet_gcp.private_subnets["scd"].self_link # subnet where the vm should be 
+      name        = "vm-nat-2"                                     # vm name
+      subnet      = module.subnet_gcp.private_subnets["nat"].self_link # subnet where the vm should be 
       public_ip   = false
       description = "A simple vm"
       open_ports  = ["80", "22"] # allowed open ports 
@@ -81,11 +81,11 @@ module "vm" {
       os          = "ubuntu" # operating system version
       os_version  = "22"
       # ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
-      script          = "${file("./script2.sh")}" # script to provision the machine
+      custom_data = file("./script.sh") # script to provision the machine
     },
     vm3 = {
-      name        = "vm-public-1"                                       # vm name
-      subnet      = module.subnet_gcp.public_subnets["first"].self_link # subnet where the vm should be 
+      name        = "vm-pub-1"                                       # vm name
+      subnet      = module.subnet_gcp.public_subnets["pub"].self_link # subnet where the vm should be 
       public_ip   = true
       description = "A simple vm"
       open_ports  = ["80", "22"] # allowed open ports 
@@ -96,11 +96,41 @@ module "vm" {
       os          = "ubuntu" # operating system default debian-cloud/debian-10
       os_version  = "22"     # 18 20 22
       # ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
-      # script          = "${file("./script.sh")}" # script to provision the machine
+      custom_data = file("./script.sh") # script to provision the machine
     },
+    vm4 = {
+      name        = "vm-pub-2"                                       # vm name
+      subnet      = module.subnet_gcp.public_subnets["pub"].self_link # subnet where the vm should be 
+      public_ip   = true
+      description = "A simple vm"
+      open_ports  = ["80", "22"] # allowed open ports 
+      username    = "user"
+      ram         = 4 # amount of random access memory
+      cores       = 2 # cores of cpu
+      arch        = "x86"
+      os          = "ubuntu" # operating system default debian-cloud/debian-10
+      os_version  = "22"     # 18 20 22
+      # ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
+      custom_data = file("./script.sh") # script to provision the machine
+    },
+    vm5 = {
+      name        = "vm-pub-3"                                       # vm name
+      subnet      = module.subnet_gcp.public_subnets["pub"].self_link # subnet where the vm should be 
+      public_ip   = true
+      description = "A simple vm"
+      open_ports  = ["80", "22"] # allowed open ports 
+      username    = "user"
+      ram         = 4 # amount of random access memory
+      cores       = 2 # cores of cpu
+      arch        = "x86"
+      os          = "ubuntu" # operating system default debian-cloud/debian-10
+      os_version  = "22"     # 18 20 22
+      # ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
+      custom_data = file("./script.sh") # script to provision the machine
+    }
   }
 }
-
+*/
 module "lb_vms" {
   source          = "./modules/vm/gcp"
   gcp_credentials = file(var.gcp_credentials)
@@ -110,8 +140,8 @@ module "lb_vms" {
   vpc_name        = module.vpc_gcp.vpc["vpc1"].name
   vms = {
     ser1 = {
-      name       = "ser-1"                                            # vm name must include private or public , TODO: we need to prevent this
-      subnet     = module.subnet_gcp.private_subnets["scd"].self_link # subnet where the vm should be 
+      name       = "serv-1"                                            # vm name must include private or public , TODO: we need to prevent this
+      subnet     = module.subnet_gcp.private_subnets["nat"].self_link # subnet where the vm should be 
       public_ip  = false
       open_ports = ["80", "22"] # allowed open ports 
       username   = "user"
@@ -120,11 +150,11 @@ module "lb_vms" {
       arch       = "x86"
       os         = "ubuntu"            # operating system default debian-cloud/debian-10
       os_version = "22"                # 18 20 22
-      user_data  = file("./script2.sh") # script to provision the machine
+      custom_data  = file("./script.sh") # script to provision the machine
     },
     ser2 = {
-      name       = "ser-2"                                            # vm name must include private or public , TODO: we need to prevent this
-      subnet     = module.subnet_gcp.private_subnets["scd"].self_link # subnet where the vm should be 
+      name       = "serv-2"                                            # vm name must include private or public , TODO: we need to prevent this
+      subnet     = module.subnet_gcp.private_subnets["nat"].self_link # subnet where the vm should be 
       public_ip  = false
       open_ports = ["80", "22"] # allowed open ports 
       username   = "user"
@@ -133,7 +163,19 @@ module "lb_vms" {
       arch       = "x86"
       os         = "ubuntu"            # operating system default debian-cloud/debian-10
       os_version = "22"                # 18 20 22
-      user_data  = file("./script2.sh") # script to provision the machine
+      custom_data  = file("./script.sh") # script to provision the machine
+    },
+    test = {
+      name       = "test"                                            # vm name must include private or public , TODO: we need to prevent this
+      subnet     = module.subnet_gcp.private_subnets["nat"].self_link # subnet where the vm should be 
+      public_ip  = false
+      open_ports = [] # allowed open ports 
+      username   = "user"
+      ram        = 4 # amount of random access memory
+      cores      = 2 # cores of cpu
+      arch       = "x86"
+      os         = "ubuntu"            # operating system default debian-cloud/debian-10
+      os_version = "22"   
     }
   }
 }
@@ -185,5 +227,4 @@ module "alert" {
     email = "islem.meghnine06@gmail.com" # email to rcv notification
   }
 }
-
 

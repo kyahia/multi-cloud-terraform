@@ -18,13 +18,13 @@ In the root directory :
         # resource properties
         aws_region = us-central-1
         name = CUSTOM_NAME
-
+        public_subnet_id = "SUBNET_ID"
         # map of subnets to create
-        subnets = { 
+        private_subnet_ids = { 
             sub1_id = SUBNET1_ID,
             sub2_id = SUBNET2_ID
         }
-}
+    }
 
 # Inputs
 | Name | Description | Type | Default | Required |

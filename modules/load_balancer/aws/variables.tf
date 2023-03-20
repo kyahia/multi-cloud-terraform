@@ -19,10 +19,10 @@ variable "sg_id" {
 variable "vm_ids" {
     type = map(string)
 }
-variable "internal" {
+variable "scheme" {
     type = string
     default = "external"
 }
-variable "load_balancer_type" {
+variable "type" {
     type = string
 }

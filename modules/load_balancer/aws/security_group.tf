@@ -1,5 +1,5 @@
 resource "aws_security_group" "app_lb_sg" {
-  count = var.sg_id != "" ? 1 : 0
+  count = var.sg_id == "" ? 1 : 0
   vpc_id = var.vpc_id
   name   = "app-lb-sg"
   ingress {

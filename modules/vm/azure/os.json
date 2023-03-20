@@ -13,7 +13,7 @@
         "version": "latest"
     },
 
-    "Debian_11_arm": {
+    "Debian_11_ARM": {
         "publisher":  "Debian",
         "offer":  "debian-11",
         "sku":  "11-backports-arm64",
@@ -69,21 +69,21 @@
         "version": "latest"
     },
 
-    "Ubuntu_18_Arm": {
+    "Ubuntu_18_ARM": {
         "publisher":  "Canonical",
         "offer":  "UbuntuServer",
         "sku":  "18_04-lts-arm64",
         "version": "latest"
     },
 
-    "Ubuntu_20_Arm": {
+    "Ubuntu_20_ARM": {
         "publisher":  "Canonical",
         "offer":  "0001-com-ubuntu-server-focal",
         "sku":  "20_04-lts-arm64",
         "version": "latest"
     },
 
-    "Ubuntu_22_Arm": {
+    "Ubuntu_22_ARM": {
         "publisher":  "Canonical",
         "offer":  "0001-com-ubuntu-server-jammy",
         "sku":  "22_04-lts-arm64",

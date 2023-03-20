@@ -25,11 +25,6 @@ In the root directory :
 | threshold | The number of requests needed to make an alert  | `number` |10 | no |
 | load_balancer_id | The id of the load balancer  | `string` | | yes |
 
-
-
-
-
-
 # Ouputs
 | Name | Type | Description |
 |------|-------------|:--------:|

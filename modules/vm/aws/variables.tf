@@ -17,7 +17,7 @@ variable "open_ports" {
   type = list
   default = []
 }
-variable "cpu_architecture" {
+variable "architecture" {
   type = string
   default = "x86_64"
 }

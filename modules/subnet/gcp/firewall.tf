@@ -37,3 +37,4 @@ resource "google_compute_firewall" "private_subnet_forbidden_outside_rule" {
     destination_ranges = [for subnet in local.private_subnets: subnet.cidr_block]
     source_ranges = ["0.0.0.0/0"]
 }
+

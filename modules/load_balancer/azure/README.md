@@ -8,21 +8,21 @@ This module allows creating a Load balancer in the cloud provider AZURE. The res
 # Usage (code snippet)
 In the root directory : 
 
-        module "load_balancer2" {
-            # path to module
-            source                = "./modules/load_balancer/azure"
-            resource_group_name   = YOUR_RESOURCE_GROUP
-            azure_subscription_id = YOUR_ID
-            virtual_network_id    = VNET_ID
-            location              = "South Central US"      
-            type                  = "application"
-            scheme                = "External"
-            subnet                = subnet_id
-            name                  = CUSTOM_NAME
-            capacity              = number
-            ports                 = [80,]    
-            vms                   = [ip1, ip2] 
-        }
+    module "load_balancer2" {
+        # path to module
+        source                = "./modules/load_balancer/azure"
+        resource_group_name   = YOUR_RESOURCE_GROUP
+        azure_subscription_id = YOUR_ID
+        virtual_network_id    = VNET_ID
+        location              = "South Central US"      
+        type                  = "application"
+        scheme                = "External"
+        subnet                = subnet_id
+        name                  = CUSTOM_NAME
+        capacity              = number
+        ports                 = [80,]    
+        vms                   = [ip1, ip2] 
+    }
 
 
 # Inputs
@@ -38,8 +38,6 @@ In the root directory :
 | capacity | The Maximum number of ressources in the backend pool | `number` | 10 | no |
 | ports | The open ports of the load balancer | `list` |  | yes |
 | vms | The ips of the ressources in the backend pool  | `list` |  | yes |
-
-
 
 
 # Ouputs
