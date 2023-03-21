@@ -1,12 +1,10 @@
-/*
 module "vpc_azure" {
   source                = "./modules/vpc/azure"
   azure_subscription_id = var.azure_subscription_id
   azure_resource_group  = var.azure_resource_group
   vpcs = {
     vpc1 = {
-      name       = "Vnet-1"
-      cidr_block = "10.0.0.0/16"
+      name       = "Vnet"
       location   = "South Central US"
     }
   }
@@ -26,11 +24,7 @@ module "subnet_azure" {
     sub2 = {
       name       = "Subnet2"
       type       = "public" # public || private
-    },
-    sub3 = {
-      name       = "Subnet3"
-      type       = "public" # public || private
-    },
+    }
   }
 }
 
@@ -40,9 +34,9 @@ module "nat_azure" {
   azure_subscription_id = var.azure_subscription_id
   resource_group_name   = var.azure_resource_group
   location              = "South Central US"
-  name                  = "auto-nat"
+  name                  = "nat"
   subnets = {
-    id1 = module.subnet_azure.public_subnets["sub1"].id
+    id1 = module.subnet_azure.subnets["sub1"].id
   }
 }
 
@@ -53,42 +47,39 @@ module "vm_azure" {
   location              = "South Central US"
   vms = {
     vm1 = {
-      name      = "Vm1"
-      subnet    = module.subnet_azure.public_subnets["sub1"].id
-      pub_ip    = false #enable | disable
-      openports = ["80", "22", "443"]
-      username  = "djalil"
-      password  = "Abdeldjalil.1999"
+      name      = "ser1"
+      subnet    = module.subnet_azure.subnets["sub1"].id
+      pub_ip    = false
+      openports = ["80"]
+      username  = "admin"
+      password  = "Admin.2023"
 
-      configuration = "auto" # "auto" || "manual"
+      configuration = "manual"
       ram           = "8"
       cores         = "2"
       os            = "Ubuntu"
       version       = "18"
       arch          = "X86"
-      custom_data   = filebase64("./script.sh")
+      custom_data   = file("./script.sh")
 
     },
     vm2 = {
-      name      = "Vm2"
-      subnet    = module.subnet_azure.public_subnets["sub1"].id
-      pub_ip    = false #enable | disable
-      openports = ["80", "22"]
-      username  = "djalil"
-      password  = "Abdeldjalil.1999"
-      # ssh_key   = file("./id_rsa.pub") #not required
+      name      = "ser2"
+      subnet    = module.subnet_azure.subnets["sub1"].id
+      pub_ip    = false 
+      openports = ["80"]
+      username  = "admin"
+      password  = "Admin.2023"
 
-      configuration = "manual" # "auto" || "manual"
-
+      configuration = "manual"
       ram     = "8"
       cores   = "2"
-      os      = "Windows"
-      version = "2016"
+      os      = "Ubuntu"
+      version = "18"
       arch    = "X86"
-      # custom_data = filebase64("./script.sh")
+      custom_data   = file("./script.sh")
     }
   }
-
 }
 
 module "load_balancer" {
@@ -99,11 +90,11 @@ module "load_balancer" {
   azure_subscription_id = var.azure_subscription_id                                                                    # required
   type                  = "application"                                                                                # not required : network || application
   scheme                = "External"                                                                                   # not required : Internal || External
-  subnet                = module.subnet_azure.public_subnets["sub3"].id                                                #required (empty subnet)c
-  name                  = "lb2"                                                                                        # required
+  subnet                = module.subnet_azure.subnets["sub2"].id                                                #required (empty subnet)c
+  name                  = "das-lb"                                                                                        # required
   capacity              = 10                                                                                           # not required
   ports                 = [80]                                                                                         # required
-  vms                   = [module.vm_azure.vm["vm1"].private_ip_address, module.vm_azure.vm["vm3"].private_ip_address] #required
+  vms                   = [module.vm_azure.vm["vm1"].private_ip_address, module.vm_azure.vm["vm2"].private_ip_address] #required
 }
 
 
@@ -111,11 +102,8 @@ module "alert" {
   source                = "./modules/alert/azure"                # required
   azure_subscription_id = var.azure_subscription_id              # required
   azure_resource_group  = var.azure_resource_group               # required
-  name                  = "my_alert"                             # required
+  name                  = "das_alert"                             # required
   window_size           = "PT1M"                                 #not required
   threshold             = 10                                     #not required
-  load_balancer_id      = module.load_balancer.load_balancer.id #required
+  load_balancer_id      = module.load_balancer.load_balancer.id
 }
-
-
-*/
