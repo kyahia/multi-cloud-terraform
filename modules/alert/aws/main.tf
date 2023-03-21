@@ -13,7 +13,7 @@ resource "aws_cloudwatch_metric_alarm" "terr_http_request_alarm" {
   alarm_name          = "terra-http-request-alarm"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
-  threshold           = "10"
+  threshold           = var.threshold
   metric_name         = "RequestCount"
   namespace           = "AWS/ApplicationELB"
   period              = "60"
@@ -21,8 +21,8 @@ resource "aws_cloudwatch_metric_alarm" "terr_http_request_alarm" {
 
   dimensions = {
     #name = "AWS/ApplicationELB"
-    LoadBalancerName = var.lb_name
+    LoadBalancer = var.lb
   }
   actions_enabled = true
-  alarm_actions = [aws_sns_topic.notify_max_request.arn]
+  alarm_actions   = [aws_sns_topic.notify_max_request.arn]
 }

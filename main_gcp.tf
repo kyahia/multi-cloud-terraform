@@ -1,4 +1,4 @@
-
+/*
 module "vpc_gcp" {
   source          = "./modules/vpc/gcp"
   gcp_credentials = file(var.gcp_credentials)
@@ -26,11 +26,7 @@ module "subnet_gcp" {
     nat = {
       name = "subnet2"
       type = "private"
-    },
-    prv = {
-      name = "subnet3"
-      type = "private"
-    },
+    }
   }
 }
 
@@ -43,94 +39,6 @@ module "nat_association" {
   vpc_name        = module.vpc_gcp.vpc["vpc1"].name
 }
 
-/*
-
-module "vm" {
-  source          = "./modules/vm/gcp"
-  gcp_credentials = file(var.gcp_credentials)
-  gcp_project_id  = jsondecode(file(var.gcp_credentials)).project_id
-  gcp_region      = "us-central1"
-  zone            = "us-central1-a"
-  vpc_name        = module.vpc_gcp.vpc["vpc1"].name
-  vms = {
-    vm1 = {
-      name        = "vm-prv-1"                                     # vm name must include private or public , TODO: we need to prevent this
-      subnet      = module.subnet_gcp.private_subnets["prv"].self_link # subnet where the vm should be 
-      public_ip   = true
-      description = "A simple vm"
-      open_ports  = ["80", "22"] # allowed open ports 
-      username    = "user"
-      ram         = 4 # amount of random access memory
-      cores       = 2 # cores of cpu
-      arch        = "x86"
-      os          = "ubuntu" # operating system version
-      os_version  = "22"
-      # ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
-      custom_data = file("./script.sh") # script to provision the machine
-    },
-    vm2 = {
-      name        = "vm-nat-2"                                     # vm name
-      subnet      = module.subnet_gcp.private_subnets["nat"].self_link # subnet where the vm should be 
-      public_ip   = false
-      description = "A simple vm"
-      open_ports  = ["80", "22"] # allowed open ports 
-      username    = "user"
-      ram         = 4 # amount of random access memory
-      cores       = 2 # cores of cpu
-      arch        = "x86"
-      os          = "ubuntu" # operating system version
-      os_version  = "22"
-      # ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
-      custom_data = file("./script.sh") # script to provision the machine
-    },
-    vm3 = {
-      name        = "vm-pub-1"                                       # vm name
-      subnet      = module.subnet_gcp.public_subnets["pub"].self_link # subnet where the vm should be 
-      public_ip   = true
-      description = "A simple vm"
-      open_ports  = ["80", "22"] # allowed open ports 
-      username    = "user"
-      ram         = 4 # amount of random access memory
-      cores       = 2 # cores of cpu
-      arch        = "x86"
-      os          = "ubuntu" # operating system default debian-cloud/debian-10
-      os_version  = "22"     # 18 20 22
-      # ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
-      custom_data = file("./script.sh") # script to provision the machine
-    },
-    vm4 = {
-      name        = "vm-pub-2"                                       # vm name
-      subnet      = module.subnet_gcp.public_subnets["pub"].self_link # subnet where the vm should be 
-      public_ip   = true
-      description = "A simple vm"
-      open_ports  = ["80", "22"] # allowed open ports 
-      username    = "user"
-      ram         = 4 # amount of random access memory
-      cores       = 2 # cores of cpu
-      arch        = "x86"
-      os          = "ubuntu" # operating system default debian-cloud/debian-10
-      os_version  = "22"     # 18 20 22
-      # ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
-      custom_data = file("./script.sh") # script to provision the machine
-    },
-    vm5 = {
-      name        = "vm-pub-3"                                       # vm name
-      subnet      = module.subnet_gcp.public_subnets["pub"].self_link # subnet where the vm should be 
-      public_ip   = true
-      description = "A simple vm"
-      open_ports  = ["80", "22"] # allowed open ports 
-      username    = "user"
-      ram         = 4 # amount of random access memory
-      cores       = 2 # cores of cpu
-      arch        = "x86"
-      os          = "ubuntu" # operating system default debian-cloud/debian-10
-      os_version  = "22"     # 18 20 22
-      # ssh_key         = file("./id_rsa.pub") # upload ssh key to configure ssh
-      custom_data = file("./script.sh") # script to provision the machine
-    }
-  }
-}
-*/
 module "lb_vms" {
   source          = "./modules/vm/gcp"
   gcp_credentials = file(var.gcp_credentials)
@@ -164,18 +72,6 @@ module "lb_vms" {
       os         = "ubuntu"            # operating system default debian-cloud/debian-10
       os_version = "22"                # 18 20 22
       custom_data  = file("./script.sh") # script to provision the machine
-    },
-    test = {
-      name       = "test"                                            # vm name must include private or public , TODO: we need to prevent this
-      subnet     = module.subnet_gcp.private_subnets["nat"].self_link # subnet where the vm should be 
-      public_ip  = false
-      open_ports = [] # allowed open ports 
-      username   = "user"
-      ram        = 4 # amount of random access memory
-      cores      = 2 # cores of cpu
-      arch       = "x86"
-      os         = "ubuntu"            # operating system default debian-cloud/debian-10
-      os_version = "22"   
     }
   }
 }
@@ -210,7 +106,6 @@ module "alert" {
   gcp_credentials = file(var.gcp_credentials)
   gcp_project_id  = jsondecode(file(var.gcp_credentials)).project_id
   gcp_region      = "us-central1"
-  # load_balancer   = module.load_balancer.infos # if not set or null value the alert will be ignored
   name            = "alertRequestCount"        # other type will be available in futur versions
   combiner        = "OR"                       # AND
   condition = {
@@ -224,7 +119,8 @@ module "alert" {
   notification = {
     name  = "email-notifier"
     type  = "email"                      # other types will be available in futur versions
-    email = "islem.meghnine06@gmail.com" # email to rcv notification
+    email = "test@gmail.com" # email to rcv notification
   }
 }
 
+*/

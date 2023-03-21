@@ -24,7 +24,7 @@ resource "google_monitoring_alert_policy" "alert_policy" {
       filter = "metric.type=\"loadbalancing.googleapis.com/https/request_count\" resource.type=\"https_lb_rule\" " # stay static for moment b/c we have only one type
       duration = "${tostring(var.condition.duration)}s"
       comparison = var.condition.comparaison == ">" ? "COMPARISON_GT" : "COMPARISON_LT"
-      threshold_value = tonumber(var.condition.threshold_value)
+      threshold_value = "10"
 
         aggregations {
             alignment_period = "${tostring(var.condition.alignment_period)}s"

@@ -68,7 +68,7 @@ module "compute_vms" {
   aws_secret_key = var.aws_secret_key
   vpc_id         = module.vpc_aws.vpcs["vpc1"].id
   subnet_id      = module.subnet_aws.subnets["sub3"].id
-  open_ports       = [80]
+  open_ports     = [80]
   vms = {
     vm1 = {
       name             = "ser1"
@@ -99,7 +99,7 @@ module "load_balancer" {
   aws_access_key = var.aws_access_key
   aws_secret_key = var.aws_secret_key
   vpc_id         = module.vpc_aws.vpcs["vpc1"].id
-  subnets        = [module.subnet_aws.subnets["sub3"].id, module.subnet_aws.subnets["sub4"].id]
+  subnets        = [module.subnet_aws.subnets["sub1"].id, module.subnet_aws.subnets["sub2"].id]
   scheme         = "external"
   type           = "application"
   vm_ids = {
@@ -113,6 +113,10 @@ module "alert" {
   aws_region     = var.aws_region
   aws_access_key = var.aws_access_key
   aws_secret_key = var.aws_secret_key
-  lb_name        = module.load_balancer.lb.name
+  lb        = module.load_balancer.lb.arn_suffix
+  threshold      = "10"
 }
 
+output "dns" {
+  value = module.load_balancer.lb.dns_name
+}

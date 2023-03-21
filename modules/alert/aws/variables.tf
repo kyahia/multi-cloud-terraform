@@ -1,12 +1,15 @@
-variable "lb_name" {
-    type = string
+variable "lb" {
+  type = string
 }
 variable "aws_access_key" {
-    type = string
+  type = string
 }
 variable "aws_secret_key" {
-    type = string
+  type = string
 }
 variable "aws_region" {
-    type = string
+  type = string
+}
+variable "threshold" {
+  default = "10"
 }
