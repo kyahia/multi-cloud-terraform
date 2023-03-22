@@ -51,7 +51,7 @@ module "vm_azure" {
       subnet    = module.subnet_azure.subnets["sub1"].id
       pub_ip    = false
       openports = ["80"]
-      username  = "admin"
+      username  = "user2023"
       password  = "Admin.2023"
 
       configuration = "manual"
@@ -68,7 +68,7 @@ module "vm_azure" {
       subnet    = module.subnet_azure.subnets["sub1"].id
       pub_ip    = false 
       openports = ["80"]
-      username  = "admin"
+      username  = "user2023"
       password  = "Admin.2023"
 
       configuration = "manual"
